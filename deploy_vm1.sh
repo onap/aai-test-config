@@ -9,6 +9,9 @@ fi
 
 export RESOURCES_LOGS="/opt/aai/logroot/AAI-RESOURCES";
 export TRAVERSAL_LOGS="/opt/aai/logroot/AAI-TRAVERSAL";
+export SEARCH_LOGS="/opt/aai/logroot/AAI-SEARCH";
+export DATA-ROUTER_LOGS="/opt/aai/logroot/AAI-DATA-ROUTER";
+export MODEL-LOADER_LOGS="/opt/aai/logroot/AAI-MODEL-LOADER";
 
 if [ ! -d "$RESOURCES_LOGS" ];
 then
@@ -20,6 +23,24 @@ if [ ! -d "$TRAVERSAL_LOGS" ];
 then
     echo "Warning: Unable to find the volume directory $TRAVERSAL_LOGS so creating it as regular directory";
     mkdir -p $TRAVERSAL_LOGS;
+fi;
+
+if [ ! -d "$SEARCH_LOGS" ];
+then
+    echo "Warning: Unable to find the volume directory $SEARCH_LOGS so creating it as regular directory";
+    mkdir -p $SEARCH_LOGS;
+fi;
+
+if [ ! -d "$DATA-ROUTER_LOGS" ];
+then
+    echo "Warning: Unable to find the volume directory $DATA-ROUTER_LOGS so creating it as regular directory";
+    mkdir -p $DATA-ROUTER_LOGS;
+fi;
+
+if [ ! -d "$MODEL-LOADER_LOGS" ];
+then
+    echo "Warning: Unable to find the volume directory $MODEL-LOADER_LOGS so creating it as regular directory";
+    mkdir -p $MODEL-LOADER_LOGS;
 fi;
 
 export MTU=${MTU:-1500};

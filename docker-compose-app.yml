@@ -9,9 +9,9 @@ services:
       - CHEF_BRANCH=master
       - CHEF_GIT_URL=http://gerrit.onap.org/r/aai
       - AAI_CORE_VERSION=1.1.0-SNAPSHOT
-    ports: 
+    ports:
       - 8447:8447
-    volumes: 
+    volumes:
       - ${RESOURCES_LOGS}:/opt/aai/logroot/AAI-RES
     logging:
       driver: "json-file"
@@ -27,9 +27,9 @@ services:
       - CHEF_BRANCH=master
       - CHEF_GIT_URL=http://gerrit.onap.org/r/aai
       - AAI_CORE_VERSION=1.1.0-SNAPSHOT
-    volumes: 
+    volumes:
       - ${TRAVERSAL_LOGS}:/opt/aai/logroot/AAI-GQ
-    ports: 
+    ports:
       - 8446:8446
     logging:
       driver: "json-file"
@@ -39,9 +39,9 @@ services:
   aai.api.simpledemo.openecomp.org:
     image: ${AAI_HAPROXY_IMAGE}
     hostname: aai.api.simpledemo.openecomp.org
-    ports: 
+    ports:
       - 8443:8443
-    links: 
+    links:
       - aai-resources.api.simpledemo.openecomp.org
       - aai-traversal.api.simpledemo.openecomp.org
     volumes:
@@ -51,8 +51,62 @@ services:
       options:
         max-size: "30m"
         max-file: "5"
+
+  aai.searchservice.simpledemo.openecomp.org:
+    image: ${DOCKER_REGISTRY}/openecomp/search-data-service
+    hostname: aai.searchservice.simpledemo.openecomp.org
+    volumes:
+      - ${SEARCH_LOGS}:/logs
+      - /opt/app/search-data-service/appconfig:/opt/app/search-data-service/config
+    ports:
+      - 9509:9509
+    environment:
+      - CONFIG_HOME=/opt/app/search-data-service/config/
+      - KEY_STORE_PASSWORD=OBF:1y0q1uvc1uum1uvg1pil1pjl1uuq1uvk1uuu1y10
+      - KEY_MANAGER_PASSWORD=OBF:1y0q1uvc1uum1uvg1pil1pjl1uuq1uvk1uuu1y10
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "30m"
+        max-file: "5"
+
+  datarouter:
+    image: ${DOCKER_REGISTRY}/openecomp/datarouter-service
+    hostname: datarouter
+    volumes:
+      - ${DATA-ROUTER_LOGS}:/logs
+      - /opt/app/datarouter-service/appconfig:/opt/app/data-router/config
+      - /opt/app/datarouter-service/dynamic:/opt/app/data-router/dynamic
+    ports:
+      - 9502:9502
+    environment:
+      - CONFIG_HOME=/opt/app/data-router/config/
+      - KEY_STORE_PASSWORD=OBF:1i9a1u2a1unz1lr61wn51wn11lss1unz1u301i6o
+      - KEY_MANAGER_PASSWORD=OBF:1y0q1uvc1uum1uvg1pil1pjl1uuq1uvk1uuu1y10
+      - DYNAMIC_ROUTES=/opt/app/data-router/dynamic/routes
+      - SERVICE_BEANS=/opt/app/data-router/dynamic/conf
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "30m"
+        max-file: "5"
+
+  model-loader:
+    image: ${DOCKER_REGISTRY}/openecomp/model-loader
+    hostname: model-loader
+    volumes:
+      - ${MODEL-LOADER_LOGS}:/logs
+      - /opt/app/model-loader/appconfig:/opt/app/model-loader/config
+    environment:
+      - CONFIG_HOME=/opt/app/model-loader/config/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "30m"
+        max-file: "5"
+
 networks:
-  default: 
+  default:
       driver: bridge
       driver_opts:
         com.docker.network.driver.mtu: ${MTU}
