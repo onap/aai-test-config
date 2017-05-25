@@ -51,6 +51,45 @@ services:
       options:
         max-size: "30m"
         max-file: "5"
+
+  aai.searchservice.simpledemo.openecomp.org:
+    image: ${DOCKER_REGISTRY}/openecomp/search-data-service
+    hostname: aai.searchservice.simpledemo.openecomp.org
+    volumes:
+      - ${SEARCH_LOGS}:/logs
+      - /opt/app/search-data-service/appconfig:/opt/app/search-data-service/config
+    ports:
+      - 9509:9509
+    environment:
+      - CONFIG_HOME=/opt/app/search-data-service/config/
+      - KEY_STORE_PASSWORD=OBF:1y0q1uvc1uum1uvg1pil1pjl1uuq1uvk1uuu1y10
+      - KEY_MANAGER_PASSWORD=OBF:1y0q1uvc1uum1uvg1pil1pjl1uuq1uvk1uuu1y10
+
+  datarouter:
+    image: ${DOCKER_REGISTRY}/openecomp/datarouter-service
+    hostname: datarouter
+    volumes:
+      - ${DATA-ROUTER_LOGS}:/logs
+      - /opt/app/datarouter-service/appconfig:/opt/app/data-router/config
+      - /opt/app/datarouter-service/dynamic:/opt/app/data-router/dynamic
+    ports:
+      - 9502:9502
+    environment:
+      - CONFIG_HOME=/opt/app/data-router/config/
+      - KEY_STORE_PASSWORD=OBF:1i9a1u2a1unz1lr61wn51wn11lss1unz1u301i6o
+      - KEY_MANAGER_PASSWORD=OBF:1y0q1uvc1uum1uvg1pil1pjl1uuq1uvk1uuu1y10
+      - DYNAMIC_ROUTES=/opt/app/data-router/dynamic/routes
+      - SERVICE_BEANS=/opt/app/data-router/dynamic/conf
+
+  model-loader:
+    image: ${DOCKER_REGISTRY}/openecomp/model-loader
+    hostname: model-loader
+    volumes:
+      - ${MODEL-LOADER_LOGS}:/logs
+      - /opt/app/model-loader/appconfig:/opt/app/model-loader/config
+    environment:
+      - CONFIG_HOME=/opt/app/model-loader/config/
+
 networks:
   default: 
       driver: bridge

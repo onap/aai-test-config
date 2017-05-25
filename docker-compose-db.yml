@@ -24,8 +24,27 @@ services:
       options:
         max-size: "30m"
         max-file: "5"
+
+  aai.elasticsearch.simpledemo.openecomp.org:
+    image: elasticsearch:2.4.1
+    hostname: aai.elasticsearch.simpledemo.openecomp.org
+    container_name: elasticsearch
+    ports:
+      - "9200:9200"
+    volumes:
+      - /opt/app/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - es-data:/usr/share/elasticsearch/data
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "30m"
+        max-file: "5"
+
 networks:
   default: 
       driver: bridge
       driver_opts:
         com.docker.network.driver.mtu: ${MTU}
+
+volumes:
+  es-data:
