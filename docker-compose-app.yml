@@ -74,7 +74,7 @@ services:
     image: ${DOCKER_REGISTRY}/openecomp/datarouter-service
     hostname: datarouter
     volumes:
-      - ${DATA-ROUTER_LOGS}:/logs
+      - ${DATA_ROUTER_LOGS}:/logs
       - /opt/app/datarouter-service/appconfig:/opt/app/data-router/config
       - /opt/app/datarouter-service/dynamic:/opt/app/data-router/dynamic
     ports:
@@ -95,7 +95,7 @@ services:
     image: ${DOCKER_REGISTRY}/openecomp/model-loader
     hostname: model-loader
     volumes:
-      - ${MODEL-LOADER_LOGS}:/logs
+      - ${MODEL_LOADER_LOGS}:/logs
       - /opt/app/model-loader/appconfig:/opt/app/model-loader/config
     environment:
       - CONFIG_HOME=/opt/app/model-loader/config/
