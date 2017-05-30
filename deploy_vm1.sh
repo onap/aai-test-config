@@ -45,9 +45,16 @@ fi;
 
 export MTU=${MTU:-1500};
 export DOCKER_REGISTRY="${DOCKER_REGISTRY:-localhost:5000}";
-export HBASE_IMAGE="${HBASE_IMAGE:-wc9368/aai-hbase-1.2.3}";
-export GREMLIN_SERVER_IMAGE="${GREMLIN_SERVER_IMAGE:-gremlin-server}";
-export AAI_HAPROXY_IMAGE="${AAI_HAPROXY_IMAGE:-aai-haproxy}";
+export AAI_HAPROXY_IMAGE="${AAI_HAPROXY_IMAGE:-hkajur93/aai-haproxy}";
+
+NEXUS_USERNAME=$(cat /opt/config/nexus_username.txt)
+NEXUS_PASSWD=$(cat /opt/config/nexus_password.txt)
+NEXUS_DOCKER_REPO=$(cat /opt/config/nexus_docker_repo.txt)
+DMAAP_TOPIC=$(cat /opt/config/dmaap_topic.txt)
+DOCKER_IMAGE_VERSION=$(cat /opt/config/docker_version.txt)
+DOCKER_REGISTRY=${NEXUS_DOCKER_REPO}
+
+docker login -u $NEXUS_USERNAME -p $NEXUS_PASSWD $NEXUS_DOCKER_REPO
 
 function wait_for_container() {
 
@@ -72,6 +79,21 @@ function wait_for_container() {
     done
 }
 
+docker pull ${DOCKER_REGISTRY}/openecomp/aai-resources:${DOCKER_IMAGE_VERSION};
+docker tag $DOCKER_REGISTRY/openecomp/aai-resources:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/openecomp/aai-resources:latest;
+
+docker pull ${DOCKER_REGISTRY}/openecomp/aai-traversal:${DOCKER_IMAGE_VERSION};
+docker tag $DOCKER_REGISTRY/openecomp/aai-traversal:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/openecomp/aai-traversal:latest;
+
+docker pull ${DOCKER_REGISTRY}/openecomp/search-data-service:${DOCKER_IMAGE_VERSION};
+docker tag $DOCKER_REGISTRY/openecomp/search-data-service:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/openecomp/aai-traversal:latest;
+
+docker pull ${DOCKER_REGISTRY}/openecomp/datarouter-service:${DOCKER_IMAGE_VERSION};
+docker tag $DOCKER_REGISTRY/openecomp/datarouter-service:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/openecomp/aai-traversal:latest;
+
+docker pull ${DOCKER_REGISTRY}/openecomp/model-loader:${DOCKER_IMAGE_VERSION};
+docker tag $DOCKER_REGISTRY/openecomp/model-loader:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/openecomp/aai-traversal:latest;
+
 # cleanup
 $DOCKER_COMPOSE_CMD stop
 $DOCKER_COMPOSE_CMD rm -f -v
@@ -92,3 +114,5 @@ wait_for_container $GRAPH_CONTAINER_NAME '0.0.0.0:8446';
 $DOCKER_COMPOSE_CMD up -d aai.api.simpledemo.openecomp.org
 
 docker exec -it $GRAPH_CONTAINER_NAME "/opt/app/aai-traversal/scripts/install/updateQueryData.sh";
+
+$DOCKER_COMPOSE_CMD up -d model-loader datarouter aai.searchservice.simpledemo.openecomp.org
