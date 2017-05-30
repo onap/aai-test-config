@@ -86,13 +86,13 @@ docker pull ${DOCKER_REGISTRY}/openecomp/aai-traversal:${DOCKER_IMAGE_VERSION};
 docker tag $DOCKER_REGISTRY/openecomp/aai-traversal:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/openecomp/aai-traversal:latest;
 
 docker pull ${DOCKER_REGISTRY}/openecomp/search-data-service:${DOCKER_IMAGE_VERSION};
-docker tag $DOCKER_REGISTRY/openecomp/search-data-service:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/openecomp/aai-traversal:latest;
+docker tag $DOCKER_REGISTRY/openecomp/search-data-service:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/openecomp/search-data-service:latest;
 
 docker pull ${DOCKER_REGISTRY}/openecomp/datarouter-service:${DOCKER_IMAGE_VERSION};
-docker tag $DOCKER_REGISTRY/openecomp/datarouter-service:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/openecomp/aai-traversal:latest;
+docker tag $DOCKER_REGISTRY/openecomp/datarouter-service:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/openecomp/datarouter-service:latest;
 
 docker pull ${DOCKER_REGISTRY}/openecomp/model-loader:${DOCKER_IMAGE_VERSION};
-docker tag $DOCKER_REGISTRY/openecomp/model-loader:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/openecomp/aai-traversal:latest;
+docker tag $DOCKER_REGISTRY/openecomp/model-loader:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/openecomp/model-loader:latest;
 
 # cleanup
 $DOCKER_COMPOSE_CMD stop
