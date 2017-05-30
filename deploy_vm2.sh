@@ -71,6 +71,9 @@ function wait_for_container() {
     done
 }
 
+docker pull ${HBASE_IMAGE};
+docker pull ${GREMLIN_SERVER_IMAGE};
+
 # cleanup
 $DOCKER_COMPOSE_CMD stop
 $DOCKER_COMPOSE_CMD rm -f -v

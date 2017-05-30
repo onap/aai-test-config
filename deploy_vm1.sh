@@ -49,6 +49,15 @@ export HBASE_IMAGE="${HBASE_IMAGE:-wc9368/aai-hbase-1.2.3}";
 export GREMLIN_SERVER_IMAGE="${GREMLIN_SERVER_IMAGE:-gremlin-server}";
 export AAI_HAPROXY_IMAGE="${AAI_HAPROXY_IMAGE:-aai-haproxy}";
 
+NEXUS_USERNAME=$(cat /opt/config/nexus_username.txt)
+NEXUS_PASSWD=$(cat /opt/config/nexus_password.txt)
+NEXUS_DOCKER_REPO=$(cat /opt/config/nexus_docker_repo.txt)
+DMAAP_TOPIC=$(cat /opt/config/dmaap_topic.txt)
+DOCKER_IMAGE_VERSION=$(cat /opt/config/docker_version.txt)
+DOCKER_REGISTRY=${NEXUS_DOCKER_REPO}
+
+docker login -u $NEXUS_USERNAME -p $NEXUS_PASSWD $NEXUS_DOCKER_REPO
+
 function wait_for_container() {
 
     CONTAINER_NAME="$1";
@@ -71,6 +80,9 @@ function wait_for_container() {
         sleep 1
     done
 }
+
+docker pull ${DOCKER_REGISTRY}/openecomp/aai-resources:${DOCKER_IMAGE_VERSION};
+docker pull ${DOCKER_REGISTRY}/openecomp/aai-traversal:${DOCKER_IMAGE_VERSION};
 
 # cleanup
 $DOCKER_COMPOSE_CMD stop
