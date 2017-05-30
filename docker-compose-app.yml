@@ -71,17 +71,17 @@ services:
         max-file: "5"
 
   datarouter:
-    image: ${DOCKER_REGISTRY}/openecomp/datarouter-service
-    hostname: datarouter
+    image: ${DOCKER_REGISTRY}/openecomp/data-router
+    hostname: data-router
     volumes:
       - ${DATA_ROUTER_LOGS}:/logs
-      - /opt/app/datarouter-service/appconfig:/opt/app/data-router/config
-      - /opt/app/datarouter-service/dynamic:/opt/app/data-router/dynamic
+      - /opt/app/data-router/appconfig:/opt/app/data-router/config
+      - /opt/app/data-router/dynamic:/opt/app/data-router/dynamic
     ports:
       - 9502:9502
     environment:
       - CONFIG_HOME=/opt/app/data-router/config/
-      - KEY_STORE_PASSWORD=OBF:1i9a1u2a1unz1lr61wn51wn11lss1unz1u301i6o
+      - KEY_STORE_PASSWORD=OBF:1y0q1uvc1uum1uvg1pil1pjl1uuq1uvk1uuu1y10
       - KEY_MANAGER_PASSWORD=OBF:1y0q1uvc1uum1uvg1pil1pjl1uuq1uvk1uuu1y10
       - DYNAMIC_ROUTES=/opt/app/data-router/dynamic/routes
       - SERVICE_BEANS=/opt/app/data-router/dynamic/conf
