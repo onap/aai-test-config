@@ -44,9 +44,9 @@ then
 fi;
 
 export MTU=${MTU:-1500};
-export HBASE_IMAGE="${HBASE_IMAGE:-wc9368/aai-hbase-1.2.3}";
+export HBASE_IMAGE="${HBASE_IMAGE:-hkajur93/aai-hbase-1.2.3}";
 #export HBASE_IMAGE="${HBASE_IMAGE:-harisekhon/hbase}";
-export GREMLIN_SERVER_IMAGE="${GREMLIN_SERVER_IMAGE:-gremlin-server}";
+export GREMLIN_SERVER_IMAGE="${GREMLIN_SERVER_IMAGE:-hkajur93/gremlin-server}";
 
 function wait_for_container() {
 
@@ -71,6 +71,9 @@ function wait_for_container() {
     done
 }
 
+docker pull ${HBASE_IMAGE};
+docker pull ${GREMLIN_SERVER_IMAGE};
+
 # cleanup
 $DOCKER_COMPOSE_CMD stop
 $DOCKER_COMPOSE_CMD rm -f -v
@@ -81,3 +84,5 @@ wait_for_container $HBASE_CONTAINER_NAME '^starting regionserver';
 
 GREMLIN_CONTAINER_NAME=$($DOCKER_COMPOSE_CMD up -d aai.gremlinserver.simpledemo.openecomp.org 2>&1 | grep 'Creating' | awk '{ print $2; }' | head -1);
 wait_for_container $GREMLIN_CONTAINER_NAME 'Channel started at port 8182';
+
+$DOCKER_COMPOSE_CMD up -d aai.elasticsearch.simpledemo.openecomp.org
