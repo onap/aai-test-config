@@ -43,10 +43,10 @@ then
     mkdir -p $MODEL_LOADER_LOGS;
 fi;
 
-export MTU=${MTU:-1500};
-export HBASE_IMAGE="${HBASE_IMAGE:-hkajur93/aai-hbase-1.2.3}";
+export MTU=$(/sbin/ifconfig | grep MTU | sed 's/.*MTU://' | sed 's/ .*//' | sort -n | head -1);
+export HBASE_IMAGE="${HBASE_IMAGE:-aaionap/hbase}";
 #export HBASE_IMAGE="${HBASE_IMAGE:-harisekhon/hbase}";
-export GREMLIN_SERVER_IMAGE="${GREMLIN_SERVER_IMAGE:-hkajur93/gremlin-server}";
+export GREMLIN_SERVER_IMAGE="${GREMLIN_SERVER_IMAGE:-aaionap/gremlin-server}";
 
 function wait_for_container() {
 
@@ -78,7 +78,7 @@ docker pull ${GREMLIN_SERVER_IMAGE};
 $DOCKER_COMPOSE_CMD stop
 $DOCKER_COMPOSE_CMD rm -f -v
 
-HBASE_CONTAINER_NAME=$($DOCKER_COMPOSE_CMD up -d aai.hbase.simpledemo.openecomp.org 2>&1 | grep 'Creating' | grep -v 'network' | awk '{ print $2; }' | head -1);
+HBASE_CONTAINER_NAME=$($DOCKER_COMPOSE_CMD up -d aai.hbase.simpledemo.openecomp.org 2>&1 | grep 'Creating' | grep -v 'volume' | grep -v 'network' | awk '{ print $2; }' | head -1);
 wait_for_container $HBASE_CONTAINER_NAME '^starting regionserver';
 #wait_for_container $HBASE_CONTAINER_NAME 'HBase metrics system started';
 
