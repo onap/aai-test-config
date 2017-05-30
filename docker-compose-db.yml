@@ -41,7 +41,7 @@ services:
     ports:
       - "9200:9200"
     volumes:
-      - /opt/app/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - /opt/test-config/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
       - es-data:/usr/share/elasticsearch/data
     logging:
       driver: "json-file"
