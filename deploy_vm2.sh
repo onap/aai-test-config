@@ -78,7 +78,7 @@ docker pull ${GREMLIN_SERVER_IMAGE};
 $DOCKER_COMPOSE_CMD stop
 $DOCKER_COMPOSE_CMD rm -f -v
 
-HBASE_CONTAINER_NAME=$($DOCKER_COMPOSE_CMD up -d aai.hbase.simpledemo.openecomp.org 2>&1 | grep 'Creating' | grep -v 'network' | awk '{ print $2; }' | head -1);
+HBASE_CONTAINER_NAME=$($DOCKER_COMPOSE_CMD up -d aai.hbase.simpledemo.openecomp.org 2>&1 | grep 'Creating' | grep -v 'volume' | grep -v 'network' | awk '{ print $2; }' | head -1);
 wait_for_container $HBASE_CONTAINER_NAME '^starting regionserver';
 #wait_for_container $HBASE_CONTAINER_NAME 'HBase metrics system started';
 
