@@ -6,7 +6,7 @@
 
   <bean id="eepConfig" class="org.openecomp.datarouter.policy.EntityEventPolicyConfig" >
     <property name="sourceDomain" value="default" />
-    <property name="searchBaseUrl" value="<TO_REPLACE>" />
+    <property name="searchBaseUrl" value="https://aai.searchservice.simpledemo.openecomp.org:9509" />
     <property name="searchEndpoint" value="services/search-data-service/v1/search/indexes/" />
     <property name="searchEndpointDocuments" value = "documents" />
     <property name="searchEntitySearchIndex" value="entity-search-index" />
