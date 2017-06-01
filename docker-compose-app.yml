@@ -57,7 +57,7 @@ services:
     hostname: aai.searchservice.simpledemo.openecomp.org
     volumes:
       - ${SEARCH_LOGS}:/logs
-      - /opt/app/search-data-service/appconfig:/opt/app/search-data-service/config
+      - /opt/test-config/search-data-service/appconfig:/opt/app/search-data-service/config
     ports:
       - 9509:9509
     environment:
@@ -75,8 +75,8 @@ services:
     hostname: data-router
     volumes:
       - ${DATA_ROUTER_LOGS}:/logs
-      - /opt/app/data-router/appconfig:/opt/app/data-router/config
-      - /opt/app/data-router/dynamic:/opt/app/data-router/dynamic
+      - /opt/test-config/data-router/appconfig:/opt/app/data-router/config
+      - /opt/test-config/data-router/dynamic:/opt/app/data-router/dynamic
     ports:
       - 9502:9502
     environment:
@@ -96,7 +96,7 @@ services:
     hostname: model-loader
     volumes:
       - ${MODEL_LOADER_LOGS}:/logs
-      - /opt/app/model-loader/appconfig:/opt/app/model-loader/config
+      - /opt/test-config/model-loader/appconfig:/opt/app/model-loader/config
     environment:
       - CONFIG_HOME=/opt/app/model-loader/config/
     logging:
