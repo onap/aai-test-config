@@ -4,14 +4,13 @@ services:
     image: ${HBASE_IMAGE}
     hostname: aai.hbase.simpledemo.openecomp.org
     ports:
-      - 50020:50020
       - 2181:2181
+      - 8080:8080
+      - 8085:8085
+      - 9090:9090
+      - 16000:16000
       - 16010:16010
-      - 50090:50090
-      - 16301:16301
-      - 50070:50070
-      - 50010:50010
-      - 50075:50075
+      - 16201:16201
     logging:
       driver: "json-file"
       options:
