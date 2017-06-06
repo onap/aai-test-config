@@ -79,6 +79,8 @@ function wait_for_container() {
     done
 }
 
+(cd /opt && git clone http://gerrit.onap.org/r/dcae/demo/startup/message-router && cd message-router && ./deploy.sh);
+
 docker pull ${DOCKER_REGISTRY}/openecomp/aai-resources:${DOCKER_IMAGE_VERSION};
 docker tag $DOCKER_REGISTRY/openecomp/aai-resources:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/openecomp/aai-resources:latest;
 
