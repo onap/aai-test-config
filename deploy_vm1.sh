@@ -108,8 +108,33 @@ $DOCKER_COMPOSE_CMD rm -f -v
 USER_ID=$(docker run -it --rm --entrypoint=id $DOCKER_REGISTRY/openecomp/aai-resources -u | sed 's/[^0-9]//g')
 GROUP_ID=$(docker run -it --rm --entrypoint=id $DOCKER_REGISTRY/openecomp/aai-resources -g | sed 's/[^0-9]//g')
 
-chown -R $USER_ID:$GROUP_ID $RESOURCES_LOGS;
-chown -R $USER_ID:$GROUP_ID $TRAVERSAL_LOGS;
+chown -R $USER_ID:$GROUP_ID $RESOURCES_LOGS || {
+
+    echo "Unable to change ownership of $RESOURCE_LOGS to $USER_ID:$GROUP_ID" >> /var/tmp/deploy_vm1.log;
+    echo "Trying with sudo now" >> /var/tmp/deploy_vm1.log;
+
+    chown -R 999:999 $RESOURCES_LOGS;
+
+    if [ $? -ne 0 ]; then
+        echo "Unable to change ownership of $RESOURCE_LOGS to 999:999 as well" >> /var/tmp/deploy_vm1.log;
+        sudo chown -R 999:999 $RESOURCE_LOGS;
+    fi;
+
+};
+
+chown -R $USER_ID:$GROUP_ID $TRAVERSAL_LOGS || {
+
+    echo "Unable to change ownership of $TRAVERSAL_LOGS to $USER_ID:$GROUP_ID" >> /var/tmp/deploy_vm1.log;
+    echo "Trying with sudo now" >> /var/tmp/deploy_vm1.log;
+
+    chown -R 999:999 $RESOURCES_LOGS;
+
+    if [ $? -ne 0 ]; then
+        echo "Unable to change ownership of $TRAVERSAL_LOGS to 999:999 as well" >> /var/tmp/deploy_vm1.log;
+        sudo chown -R 999:999 $TRAVERSAL_LOGS;
+    fi;
+
+};
 
 RESOURCES_CONTAINER_NAME=$($DOCKER_COMPOSE_CMD up -d aai-resources.api.simpledemo.openecomp.org 2>&1 | grep 'Creating' | grep -v 'volume' | grep -v 'network' | awk '{ print $2; }' | head -1);
 wait_for_container $RESOURCES_CONTAINER_NAME '0.0.0.0:8447';
