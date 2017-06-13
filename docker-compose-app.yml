@@ -105,6 +105,24 @@ services:
         max-size: "30m"
         max-file: "5"
 
+  aai.ui.simpledemo.openecomp.org:
+    image: ${DOCKER_REGISTRY}/openecomp/aai-ui
+    hostname: aai.ui.simpledemo.openecomp.org
+    volumes:
+      - ${UI_LOGS}:/logs
+      - /opt/app/sparky/appconfig:/opt/app/UI_LOGS/config
+    ports:
+      - 9517:9517
+    environment:
+      - CONFIG_HOME=/opt/app/sparky/config
+      - KEY_STORE_PASSWORD=OBF:1i9a1u2a1unz1lr61wn51wn11lss1unz1u301i6o
+      - KEY_MANAGER_PASSWORD=OBF:1i9a1u2a1unz1lr61wn51wn11lss1unz1u301i6o
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "30m"
+        max-file: "5"
+        
 networks:
   default:
       driver: bridge

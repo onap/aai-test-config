@@ -12,6 +12,7 @@ export TRAVERSAL_LOGS="/opt/aai/logroot/AAI-TRAVERSAL";
 export SEARCH_LOGS="/opt/aai/logroot/AAI-SEARCH";
 export DATA_ROUTER_LOGS="/opt/aai/logroot/AAI-DATA-ROUTER";
 export MODEL_LOADER_LOGS="/opt/aai/logroot/AAI-MODEL-LOADER";
+export UI_LOGS="/opt/aai/logroot/AAI-UI";
 
 if [ ! -d "$RESOURCES_LOGS" ];
 then
@@ -41,6 +42,12 @@ if [ ! -d "$MODEL_LOADER_LOGS" ];
 then
     echo "Warning: Unable to find the volume directory $MODEL_LOADER_LOGS so creating it as regular directory";
     mkdir -p $MODEL_LOADER_LOGS;
+fi;
+
+if [ ! -d "$UI_LOGS" ];
+then
+    echo "Warning: Unable to find the volume directory $UI_LOGS so creating it as regular directory";
+    mkdir -p $UI_LOGS;
 fi;
 
 export MTU=$(/sbin/ifconfig | grep MTU | sed 's/.*MTU://' | sed 's/ .*//' | sort -n | head -1);
@@ -100,6 +107,9 @@ docker tag $DOCKER_REGISTRY/openecomp/datarouter-service:$DOCKER_IMAGE_VERSION $
 
 docker pull ${DOCKER_REGISTRY}/openecomp/model-loader:${DOCKER_IMAGE_VERSION};
 docker tag $DOCKER_REGISTRY/openecomp/model-loader:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/openecomp/model-loader:latest;
+
+docker pull ${DOCKER_REGISTRY}/openecomp/sparky:${DOCKER_IMAGE_VERSION};
+docker tag $DOCKER_REGISTRY/openecomp/sparky:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/openecomp/sparky:latest;
 
 # cleanup
 $DOCKER_COMPOSE_CMD stop
