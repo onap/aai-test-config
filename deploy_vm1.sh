@@ -108,8 +108,8 @@ docker tag $DOCKER_REGISTRY/openecomp/datarouter-service:$DOCKER_IMAGE_VERSION $
 docker pull ${DOCKER_REGISTRY}/openecomp/model-loader:${DOCKER_IMAGE_VERSION};
 docker tag $DOCKER_REGISTRY/openecomp/model-loader:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/openecomp/model-loader:latest;
 
-docker pull ${DOCKER_REGISTRY}/openecomp/sparky:${DOCKER_IMAGE_VERSION};
-docker tag $DOCKER_REGISTRY/openecomp/sparky:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/openecomp/sparky:latest;
+docker pull ${DOCKER_REGISTRY}/openecomp/sparky-be:${DOCKER_IMAGE_VERSION};
+docker tag $DOCKER_REGISTRY/openecomp/sparky-be:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/openecomp/sparky:latest;
 
 # cleanup
 $DOCKER_COMPOSE_CMD stop
