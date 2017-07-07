@@ -109,7 +109,7 @@ docker pull ${DOCKER_REGISTRY}/openecomp/model-loader:${DOCKER_IMAGE_VERSION};
 docker tag $DOCKER_REGISTRY/openecomp/model-loader:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/openecomp/model-loader:latest;
 
 docker pull ${DOCKER_REGISTRY}/openecomp/sparky-be:${DOCKER_IMAGE_VERSION};
-docker tag $DOCKER_REGISTRY/openecomp/sparky-be:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/openecomp/sparky:latest;
+docker tag $DOCKER_REGISTRY/openecomp/sparky-be:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/openecomp/sparky-be:latest;
 
 # cleanup
 $DOCKER_COMPOSE_CMD stop
@@ -145,6 +145,7 @@ chown -R $USER_ID:$GROUP_ID $TRAVERSAL_LOGS || {
     fi;
 
 };
+$DOCKER_COMPOSE_CMD up -d sparky-be
 
 RESOURCES_CONTAINER_NAME=$($DOCKER_COMPOSE_CMD up -d aai-resources.api.simpledemo.openecomp.org 2>&1 | grep 'Creating' | grep -v 'volume' | grep -v 'network' | awk '{ print $2; }' | head -1);
 wait_for_container $RESOURCES_CONTAINER_NAME '0.0.0.0:8447';
@@ -157,4 +158,4 @@ $DOCKER_COMPOSE_CMD up -d aai.api.simpledemo.openecomp.org
 
 docker exec -it $GRAPH_CONTAINER_NAME "/opt/app/aai-traversal/scripts/install/updateQueryData.sh";
 
-$DOCKER_COMPOSE_CMD up -d model-loader sparky datarouter aai.searchservice.simpledemo.openecomp.org
+$DOCKER_COMPOSE_CMD up -d model-loader datarouter

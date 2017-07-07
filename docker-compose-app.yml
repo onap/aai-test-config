@@ -105,12 +105,12 @@ services:
         max-size: "30m"
         max-file: "5"
 
-  aai.ui.simpledemo.openecomp.org:
-    image: ${DOCKER_REGISTRY}/openecomp/aai-ui
-    hostname: aai.ui.simpledemo.openecomp.org
+  sparky-be:
+    image: ${DOCKER_REGISTRY}/openecomp/sparky-be
+    hostname: sparky-be
     volumes:
       - ${UI_LOGS}:/logs
-      - /opt/app/sparky/appconfig:/opt/app/UI_LOGS/config
+      - /opt/test-config/sparky/appconfig:/opt/app/sparky/config
     ports:
       - 9517:9517
     environment:
