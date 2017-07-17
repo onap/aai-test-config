@@ -158,4 +158,4 @@ $DOCKER_COMPOSE_CMD up -d aai.api.simpledemo.openecomp.org
 
 docker exec -it $GRAPH_CONTAINER_NAME "/opt/app/aai-traversal/scripts/install/updateQueryData.sh";
 
-$DOCKER_COMPOSE_CMD up -d model-loader datarouter
+$DOCKER_COMPOSE_CMD up -d model-loader datarouter aai.searchservice.simpledemo.openecomp.org
