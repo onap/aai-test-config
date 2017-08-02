@@ -1,0 +1,48 @@
+{
+    "filters": [
+        {
+            "filterId": "1",
+            "filterName": "Orchestration-Status",
+            "displayName": "Orchestration Status",
+            "dataType": "list",
+            "dataSource": {
+                "indexName": "aggregate_generic-vnf_index-localhost",
+                "docType": "default",
+                "fieldName": "orchestration-status"
+            }
+        },
+        {
+            "filterId": "2",
+            "filterName": "Prov-Status",
+            "displayName": "Provisioning Status",
+            "dataType": "list",
+            "dataSource": {
+                "indexName": "aggregate_generic-vnf_index-localhost",
+                "docType": "default",
+                "fieldName": "prov-status"
+            }
+        },
+        {
+            "filterId": "7",
+            "filterName": "NF-Type",
+            "displayName": "Network Function Type",
+            "dataType": "list",
+            "dataSource": {
+                "indexName": "aggregate_generic-vnf_index-localhost",
+                "docType": "default",
+                "fieldName": "nf-type"
+            }
+        },
+        {
+            "filterId": "8",
+            "filterName": "NF-Role",
+            "displayName": "Network Function Role",
+            "dataType": "list",
+            "dataSource": {
+                "indexName": "aggregate_generic-vnf_index-localhost",
+                "docType": "default",
+                "fieldName": "nf-role"
+            }
+        }
+    ]
+}
