@@ -155,7 +155,12 @@ wait_for_container $GRAPH_CONTAINER_NAME '0.0.0.0:8446';
 
 # deploy
 $DOCKER_COMPOSE_CMD up -d aai.api.simpledemo.openecomp.org
+echo "A&AI Microservices, resources and traversal, are up and running along with HAProxy";
 
-docker exec -it $GRAPH_CONTAINER_NAME "/opt/app/aai-traversal/scripts/install/updateQueryData.sh";
+docker exec -it $GRAPH_CONTAINER_NAME "/opt/app/aai-traversal/scripts/install/updateQueryData.sh" && {
+	echo "Successfully loaded the widget related data into db";
+} || {
+	echo "Unable to load widget related data into db";
+}
 
 $DOCKER_COMPOSE_CMD up -d model-loader datarouter aai.searchservice.simpledemo.openecomp.org
