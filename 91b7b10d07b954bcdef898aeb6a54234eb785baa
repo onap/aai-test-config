@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a437d4f_e32bb180",
+        "filename": "deploy_vm1.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 33
+      },
+      "writtenOn": "2017-08-31T16:22:39Z",
+      "side": 1,
+      "message": "fixed typo",
+      "revId": "91b7b10d07b954bcdef898aeb6a54234eb785baa",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
