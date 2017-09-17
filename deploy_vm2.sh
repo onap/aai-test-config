@@ -7,46 +7,9 @@ else
     DOCKER_COMPOSE_CMD="docker-compose -f docker-compose-db.yml"
 fi
 
-export RESOURCES_LOGS="/opt/aai/logroot/AAI-RESOURCES";
-export TRAVERSAL_LOGS="/opt/aai/logroot/AAI-TRAVERSAL";
-export SEARCH_LOGS="/opt/aai/logroot/AAI-SEARCH";
-export DATA_ROUTER_LOGS="/opt/aai/logroot/AAI-DATA-ROUTER";
-export MODEL_LOADER_LOGS="/opt/aai/logroot/AAI-MODEL-LOADER";
-
-if [ ! -d "$RESOURCES_LOGS" ];
-then
-    echo "Warning: Unable to find the volume directory $RESOURCES_LOGS so creating it as regular directory";
-    mkdir -p $RESOURCES_LOGS;
-fi;
-
-if [ ! -d "$TRAVERSAL_LOGS" ];
-then
-    echo "Warning: Unable to find the volume directory $TRAVERSAL_LOGS so creating it as regular directory";
-    mkdir -p $TRAVERSAL_LOGS;
-fi;
-
-if [ ! -d "$SEARCH_LOGS" ];
-then
-    echo "Warning: Unable to find the volume directory $SEARCH_LOGS so creating it as regular directory";
-    mkdir -p $SEARCH_LOGS;
-fi;
-
-if [ ! -d "$DATA_ROUTER_LOGS" ];
-then
-    echo "Warning: Unable to find the volume directory $DATA_ROUTER_LOGS so creating it as regular directory";
-    mkdir -p $DATA_ROUTER_LOGS;
-fi;
-
-if [ ! -d "$MODEL_LOADER_LOGS" ];
-then
-    echo "Warning: Unable to find the volume directory $MODEL_LOADER_LOGS so creating it as regular directory";
-    mkdir -p $MODEL_LOADER_LOGS;
-fi;
-
 export MTU=$(/sbin/ifconfig | grep MTU | sed 's/.*MTU://' | sed 's/ .*//' | sort -n | head -1);
 #export HBASE_IMAGE="${HBASE_IMAGE:-aaionap/hbase}";
 export HBASE_IMAGE="${HBASE_IMAGE:-harisekhon/hbase}";
-export GREMLIN_SERVER_IMAGE="${GREMLIN_SERVER_IMAGE:-aaionap/gremlin-server}";
 
 function wait_for_container() {
 
@@ -72,7 +35,6 @@ function wait_for_container() {
 }
 
 docker pull ${HBASE_IMAGE};
-docker pull ${GREMLIN_SERVER_IMAGE};
 
 # cleanup
 $DOCKER_COMPOSE_CMD stop
@@ -84,9 +46,5 @@ HBASE_CONTAINER_NAME=$($DOCKER_COMPOSE_CMD up -d aai.hbase.simpledemo.openecomp.
 wait_for_container $HBASE_CONTAINER_NAME ' Started SelectChannelConnector@0.0.0.0:8085';
 wait_for_container $HBASE_CONTAINER_NAME ' Started SelectChannelConnector@0.0.0.0:8080';
 wait_for_container $HBASE_CONTAINER_NAME ' Started SelectChannelConnector@0.0.0.0:9095';
-
-
-GREMLIN_CONTAINER_NAME=$($DOCKER_COMPOSE_CMD up -d aai.gremlinserver.simpledemo.openecomp.org 2>&1 | grep 'Creating' | awk '{ print $2; }' | head -1);
-wait_for_container $GREMLIN_CONTAINER_NAME 'Channel started at port 8182';
 
 $DOCKER_COMPOSE_CMD up -d aai.elasticsearch.simpledemo.openecomp.org

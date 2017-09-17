@@ -16,23 +16,6 @@ services:
       options:
         max-size: "30m"
         max-file: "5"
-  aai.gremlinserver.simpledemo.openecomp.org:
-    image: ${GREMLIN_SERVER_IMAGE}
-    hostname: aai.gremlinserver.simpledemo.openecomp.org
-    environment:
-      - SERVER_HOST=aai.hbase.simpledemo.openecomp.org
-      - SERVER_TABLE=aaigraph.dev
-      - GREMLIN_HOST=aai.gremlinserver.simpledemo.openecomp.org
-    links: 
-      - aai.hbase.simpledemo.openecomp.org
-    ports: 
-      - 8182:8182
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "30m"
-        max-file: "5"
-
   aai.elasticsearch.simpledemo.openecomp.org:
     image: elasticsearch:2.4.1
     hostname: aai.elasticsearch.simpledemo.openecomp.org
