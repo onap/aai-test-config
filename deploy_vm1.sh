@@ -143,22 +143,11 @@ fi;
 
 chown -R $USER_ID:$USER_ID $RESOURCE_LOGS $TRAVERSAL_LOGS;
 
+# Deploy haproxy and traversal and resources
+$DOCKER_COMPOSE_CMD up -d aai.api.simpledemo.openecomp.org aai-resources.api.simpledemo.openecomp.org aai-traversal.api.simpledemo.openecomp.org
+
 $DOCKER_COMPOSE_CMD up -d sparky-be
 
-RESOURCES_CONTAINER_NAME=$($DOCKER_COMPOSE_CMD up -d aai-resources.api.simpledemo.openecomp.org 2>&1 | grep 'Creating' | grep -v 'volume' | grep -v 'network' | awk '{ print $2; }' | head -1);
-wait_for_container $RESOURCES_CONTAINER_NAME '0.0.0.0:8447';
-
-GRAPH_CONTAINER_NAME=$($DOCKER_COMPOSE_CMD up -d aai-traversal.api.simpledemo.openecomp.org 2>&1 | grep 'Creating' | awk '{ print $2; }' | head -1);
-wait_for_container $GRAPH_CONTAINER_NAME '0.0.0.0:8446';
-
-# deploy
-$DOCKER_COMPOSE_CMD up -d aai.api.simpledemo.openecomp.org
-echo "A&AI Microservices, resources and traversal, are up and running along with HAProxy";
-
-docker exec -it $GRAPH_CONTAINER_NAME "/opt/app/aai-traversal/scripts/install/updateQueryData.sh" && {
-	echo "Successfully loaded the widget related data into db";
-} || {
-	echo "Unable to load widget related data into db";
-}
-
 $DOCKER_COMPOSE_CMD up -d model-loader datarouter aai.searchservice.simpledemo.openecomp.org
+
+echo "A&AI Microservices are successfully started";
