@@ -86,6 +86,23 @@ function wait_for_container() {
     done
 }
 
+function check_if_user_exists(){
+
+        local user_id=$1;
+
+        if [ -z "$user_id" ]; then
+                echo "Needs to provide at least one argument for check_if_user_exists func";
+                exit 1;
+        fi;
+
+        id -u ${user_id} > /dev/null 2>&1 && {
+                echo "1";
+        } || {
+                echo "0";
+        }
+}
+
+
 if [ ! -d "/opt/message-router" ]; then
     (cd /opt && \
         git clone http://gerrit.onap.org/r/dcae/demo/startup/message-router && \
@@ -115,36 +132,17 @@ docker tag $DOCKER_REGISTRY/openecomp/sparky-be:$DOCKER_IMAGE_VERSION $DOCKER_RE
 $DOCKER_COMPOSE_CMD stop
 $DOCKER_COMPOSE_CMD rm -f -v
 
-USER_ID=$(docker run -it --rm --entrypoint=id $DOCKER_REGISTRY/openecomp/aai-resources -u | sed 's/[^0-9]//g')
-GROUP_ID=$(docker run -it --rm --entrypoint=id $DOCKER_REGISTRY/openecomp/aai-resources -g | sed 's/[^0-9]//g')
 
-chown -R $USER_ID:$GROUP_ID $RESOURCES_LOGS || {
+USER_EXISTS=$(check_if_user_exists aaiadmin);
 
-    echo "Unable to change ownership of $RESOURCE_LOGS to $USER_ID:$GROUP_ID" >> /var/tmp/deploy_vm1.log;
-    echo "Trying with sudo now" >> /var/tmp/deploy_vm1.log;
+if [ "${USER_EXISTS}" -eq 0 ]; then
+        export USER_ID=9000;
+else
+        export USER_ID=$(id -u aaiadmin);
+fi;
 
-    chown -R 999:999 $RESOURCES_LOGS;
+chown -R $USER_ID:$USER_ID $RESOURCE_LOGS $TRAVERSAL_LOGS;
 
-    if [ $? -ne 0 ]; then
-        echo "Unable to change ownership of $RESOURCE_LOGS to 999:999 as well" >> /var/tmp/deploy_vm1.log;
-        sudo chown -R 999:999 $RESOURCE_LOGS;
-    fi;
-
-};
-
-chown -R $USER_ID:$GROUP_ID $TRAVERSAL_LOGS || {
-
-    echo "Unable to change ownership of $TRAVERSAL_LOGS to $USER_ID:$GROUP_ID" >> /var/tmp/deploy_vm1.log;
-    echo "Trying with sudo now" >> /var/tmp/deploy_vm1.log;
-
-    chown -R 999:999 $RESOURCES_LOGS;
-
-    if [ $? -ne 0 ]; then
-        echo "Unable to change ownership of $TRAVERSAL_LOGS to 999:999 as well" >> /var/tmp/deploy_vm1.log;
-        sudo chown -R 999:999 $TRAVERSAL_LOGS;
-    fi;
-
-};
 $DOCKER_COMPOSE_CMD up -d sparky-be
 
 RESOURCES_CONTAINER_NAME=$($DOCKER_COMPOSE_CMD up -d aai-resources.api.simpledemo.openecomp.org 2>&1 | grep 'Creating' | grep -v 'volume' | grep -v 'network' | awk '{ print $2; }' | head -1);
