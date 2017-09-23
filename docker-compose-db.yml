@@ -1,7 +1,7 @@
 version: '2'
 services:
   aai.hbase.simpledemo.openecomp.org:
-    image: ${HBASE_IMAGE}
+    image: ${HBASE_IMAGE}:${HBASE_VERSION}
     hostname: aai.hbase.simpledemo.openecomp.org
     ports:
       - 2181:2181

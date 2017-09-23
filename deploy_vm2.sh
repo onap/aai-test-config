@@ -8,8 +8,8 @@ else
 fi
 
 export MTU=$(/sbin/ifconfig | grep MTU | sed 's/.*MTU://' | sed 's/ .*//' | sort -n | head -1);
-#export HBASE_IMAGE="${HBASE_IMAGE:-aaionap/hbase}";
-export HBASE_IMAGE="${HBASE_IMAGE:-harisekhon/hbase}";
+export HBASE_IMAGE="${HBASE_IMAGE:-aaionap/hbase}";
+export HBASE_VERSION="${HBASE_VERSION:-1.0.0}";
 
 function wait_for_container() {
 
@@ -34,7 +34,7 @@ function wait_for_container() {
     done
 }
 
-docker pull ${HBASE_IMAGE};
+docker pull ${HBASE_IMAGE}:${HBASE_VERSION};
 
 # cleanup
 $DOCKER_COMPOSE_CMD stop
