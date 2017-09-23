@@ -8,8 +8,8 @@ else
 fi
 
 export MTU=$(/sbin/ifconfig | grep MTU | sed 's/.*MTU://' | sed 's/ .*//' | sort -n | head -1);
-#export HBASE_IMAGE="${HBASE_IMAGE:-aaionap/hbase}";
-export HBASE_IMAGE="${HBASE_IMAGE:-harisekhon/hbase}";
+export HBASE_IMAGE="${HBASE_IMAGE:-aaionap/hbase}";
+export HBASE_VERSION="${HBASE_VERSION:-1.0.0}";
 
 function wait_for_container() {
 
@@ -34,7 +34,7 @@ function wait_for_container() {
     done
 }
 
-docker pull ${HBASE_IMAGE};
+docker pull ${HBASE_IMAGE}:${HBASE_VERSION};
 
 # cleanup
 $DOCKER_COMPOSE_CMD stop
@@ -42,9 +42,6 @@ $DOCKER_COMPOSE_CMD rm -f -v
 
 HBASE_CONTAINER_NAME=$($DOCKER_COMPOSE_CMD up -d aai.hbase.simpledemo.openecomp.org 2>&1 | grep 'Creating' | grep -v 'volume' | grep -v 'network' | awk '{ print $2; }' | head -1);
 #wait_for_container $HBASE_CONTAINER_NAME '^starting regionserver';
-#wait_for_container $HBASE_CONTAINER_NAME 'HBase metrics system started';
-wait_for_container $HBASE_CONTAINER_NAME ' Started SelectChannelConnector@0.0.0.0:8085';
-wait_for_container $HBASE_CONTAINER_NAME ' Started SelectChannelConnector@0.0.0.0:8080';
-wait_for_container $HBASE_CONTAINER_NAME ' Started SelectChannelConnector@0.0.0.0:9095';
+wait_for_container $HBASE_CONTAINER_NAME 'HBase metrics system started';
 
 $DOCKER_COMPOSE_CMD up -d aai.elasticsearch.simpledemo.openecomp.org
