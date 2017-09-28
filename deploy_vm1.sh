@@ -102,14 +102,6 @@ function check_if_user_exists(){
         }
 }
 
-
-if [ ! -d "/opt/message-router" ]; then
-    (cd /opt && \
-        git clone http://gerrit.onap.org/r/dcae/demo/startup/message-router && \
-        cd message-router && \
-        ./deploy.sh);
-fi
-
 docker pull ${DOCKER_REGISTRY}/openecomp/aai-resources:${DOCKER_IMAGE_VERSION};
 docker tag $DOCKER_REGISTRY/openecomp/aai-resources:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/openecomp/aai-resources:latest;
 
