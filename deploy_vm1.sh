@@ -68,7 +68,7 @@ function wait_for_container() {
     CONTAINER_NAME="$1";
     START_TEXT="$2";
 
-    TIMEOUT=160
+    TIMEOUT=360
 
     # wait for the real startup
     AMOUNT_STARTUP=$(docker logs ${CONTAINER_NAME} 2>&1 | grep "$START_TEXT" | wc -l)
@@ -135,8 +135,14 @@ fi;
 
 chown -R $USER_ID:$USER_ID $RESOURCE_LOGS $TRAVERSAL_LOGS;
 
+RESOURCES_CONTAINER_NAME=$($DOCKER_COMPOSE_CMD up -d aai-resources.api.simpledemo.openecomp.org 2>&1 | grep 'Creating' | grep -v 'volume' | grep -v 'network' | awk '{ print $2; }' | head -1);
+wait_for_container $RESOURCES_CONTAINER_NAME '0.0.0.0:8447';
+
+GRAPH_CONTAINER_NAME=$($DOCKER_COMPOSE_CMD up -d aai-traversal.api.simpledemo.openecomp.org 2>&1 | grep 'Creating' | awk '{ print $2; }' | head -1);
+wait_for_container $GRAPH_CONTAINER_NAME '0.0.0.0:8446';
+
 # Deploy haproxy and traversal and resources
-$DOCKER_COMPOSE_CMD up -d aai.api.simpledemo.openecomp.org aai-resources.api.simpledemo.openecomp.org aai-traversal.api.simpledemo.openecomp.org
+$DOCKER_COMPOSE_CMD up -d aai.api.simpledemo.openecomp.org
 
 $DOCKER_COMPOSE_CMD up -d sparky-be
 
