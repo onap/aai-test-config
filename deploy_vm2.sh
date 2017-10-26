@@ -16,7 +16,7 @@ function wait_for_container() {
     CONTAINER_NAME="$1";
     START_TEXT="$2";
 
-    TIMEOUT=160
+    TIMEOUT=600
 
     # wait for the real startup
     AMOUNT_STARTUP=$(docker logs ${CONTAINER_NAME} 2>&1 | grep "$START_TEXT" | wc -l)
@@ -29,8 +29,8 @@ function wait_for_container() {
             echo "ERROR: $CONTAINER_NAME deployment failed."
             exit 1
         fi
-        let TIMEOUT-=1
-        sleep 1
+        let TIMEOUT-=5
+        sleep 5
     done
 }
 
