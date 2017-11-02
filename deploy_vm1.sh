@@ -149,3 +149,5 @@ $DOCKER_COMPOSE_CMD up -d sparky-be
 $DOCKER_COMPOSE_CMD up -d model-loader datarouter aai.searchservice.simpledemo.openecomp.org
 
 echo "A&AI Microservices are successfully started";
+
+crontab < /opt/test-config/aaicrontab
