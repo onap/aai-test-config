@@ -109,17 +109,17 @@ docker tag $DOCKER_REGISTRY/openecomp/aai-resources:$DOCKER_IMAGE_VERSION $DOCKE
 docker pull ${DOCKER_REGISTRY}/openecomp/aai-traversal:${DOCKER_IMAGE_VERSION};
 docker tag $DOCKER_REGISTRY/openecomp/aai-traversal:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/openecomp/aai-traversal:latest;
 
-docker pull ${DOCKER_REGISTRY}/openecomp/search-data-service:${DOCKER_IMAGE_VERSION};
-docker tag $DOCKER_REGISTRY/openecomp/search-data-service:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/openecomp/search-data-service:latest;
+docker pull ${DOCKER_REGISTRY}/onap/search-data-service:${DOCKER_IMAGE_VERSION};
+docker tag $DOCKER_REGISTRY/onap/search-data-service:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/search-data-service:latest;
 
-docker pull ${DOCKER_REGISTRY}/openecomp/data-router:${DOCKER_IMAGE_VERSION};
-docker tag $DOCKER_REGISTRY/openecomp/data-router:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/openecomp/data-router:latest;
+docker pull ${DOCKER_REGISTRY}/onap/data-router:${DOCKER_IMAGE_VERSION};
+docker tag $DOCKER_REGISTRY/onap/data-router:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/data-router:latest;
 
-docker pull ${DOCKER_REGISTRY}/openecomp/model-loader:${DOCKER_IMAGE_VERSION};
-docker tag $DOCKER_REGISTRY/openecomp/model-loader:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/openecomp/model-loader:latest;
+docker pull ${DOCKER_REGISTRY}/onap/model-loader:${DOCKER_IMAGE_VERSION};
+docker tag $DOCKER_REGISTRY/onap/model-loader:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/model-loader:latest;
 
-docker pull ${DOCKER_REGISTRY}/openecomp/sparky-be:${DOCKER_IMAGE_VERSION};
-docker tag $DOCKER_REGISTRY/openecomp/sparky-be:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/openecomp/sparky-be:latest;
+docker pull ${DOCKER_REGISTRY}/onap/sparky-be:${DOCKER_IMAGE_VERSION};
+docker tag $DOCKER_REGISTRY/onap/sparky-be:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/sparky-be:latest;
 
 # cleanup
 $DOCKER_COMPOSE_CMD stop

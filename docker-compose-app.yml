@@ -55,7 +55,7 @@ services:
         max-file: "5"
 
   aai.searchservice.simpledemo.openecomp.org:
-    image: ${DOCKER_REGISTRY}/openecomp/search-data-service
+    image: ${DOCKER_REGISTRY}/onap/search-data-service
     hostname: aai.searchservice.simpledemo.openecomp.org
     volumes:
       - ${SEARCH_LOGS}:/logs
@@ -73,7 +73,7 @@ services:
         max-file: "5"
 
   datarouter:
-    image: ${DOCKER_REGISTRY}/openecomp/data-router
+    image: ${DOCKER_REGISTRY}/onap/data-router
     hostname: data-router
     volumes:
       - ${DATA_ROUTER_LOGS}:/logs
@@ -94,7 +94,7 @@ services:
         max-file: "5"
 
   model-loader:
-    image: ${DOCKER_REGISTRY}/openecomp/model-loader
+    image: ${DOCKER_REGISTRY}/onap/model-loader
     hostname: model-loader
     volumes:
       - ${MODEL_LOADER_LOGS}:/logs
@@ -108,7 +108,7 @@ services:
         max-file: "5"
 
   sparky-be:
-    image: ${DOCKER_REGISTRY}/openecomp/sparky-be
+    image: ${DOCKER_REGISTRY}/onap/sparky-be
     hostname: sparky-be
     volumes:
       - ${UI_LOGS}:/logs
