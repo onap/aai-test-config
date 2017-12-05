@@ -1,7 +1,7 @@
 version: '2'
 services:
   aai-resources.api.simpledemo.openecomp.org:
-    image: ${DOCKER_REGISTRY}/openecomp/aai-resources
+    image: ${DOCKER_REGISTRY}/onap/aai-resources
     hostname: aai-resources.api.simpledemo.openecomp.org
     environment:
       - AAI_CHEF_ENV=simpledemo
@@ -20,7 +20,7 @@ services:
         max-size: "30m"
         max-file: "5"
   aai-traversal.api.simpledemo.openecomp.org:
-    image: ${DOCKER_REGISTRY}/openecomp/aai-traversal
+    image: ${DOCKER_REGISTRY}/onap/aai-traversal
     hostname: aai-traversal.api.simpledemo.openecomp.org
     environment:
       - AAI_CHEF_ENV=simpledemo
