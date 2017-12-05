@@ -103,11 +103,11 @@ function check_if_user_exists(){
         }
 }
 
-docker pull ${DOCKER_REGISTRY}/openecomp/aai-resources:${DOCKER_IMAGE_VERSION};
-docker tag $DOCKER_REGISTRY/openecomp/aai-resources:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/openecomp/aai-resources:latest;
+docker pull ${DOCKER_REGISTRY}/onap/aai-resources:${DOCKER_IMAGE_VERSION};
+docker tag $DOCKER_REGISTRY/onap/aai-resources:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/aai-resources:latest;
 
-docker pull ${DOCKER_REGISTRY}/openecomp/aai-traversal:${DOCKER_IMAGE_VERSION};
-docker tag $DOCKER_REGISTRY/openecomp/aai-traversal:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/openecomp/aai-traversal:latest;
+docker pull ${DOCKER_REGISTRY}/onap/aai-traversal:${DOCKER_IMAGE_VERSION};
+docker tag $DOCKER_REGISTRY/onap/aai-traversal:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/aai-traversal:latest;
 
 docker pull ${DOCKER_REGISTRY}/onap/search-data-service:${DOCKER_IMAGE_VERSION};
 docker tag $DOCKER_REGISTRY/onap/search-data-service:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/search-data-service:latest;
