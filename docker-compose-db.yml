@@ -1,8 +1,8 @@
 version: '2'
 services:
-  aai.hbase.simpledemo.openecomp.org:
+  aai.hbase.simpledemo.onap.org:
     image: ${HBASE_IMAGE}:${HBASE_VERSION}
-    hostname: aai.hbase.simpledemo.openecomp.org
+    hostname: aai.hbase.simpledemo.onap.org
     ports:
       - 2181:2181
       - 8080:8080

@@ -40,7 +40,7 @@ docker pull ${HBASE_IMAGE}:${HBASE_VERSION};
 $DOCKER_COMPOSE_CMD stop
 $DOCKER_COMPOSE_CMD rm -f -v
 
-HBASE_CONTAINER_NAME=$($DOCKER_COMPOSE_CMD up -d aai.hbase.simpledemo.openecomp.org 2>&1 | grep 'Creating' | grep -v 'volume' | grep -v 'network' | awk '{ print $2; }' | head -1);
+HBASE_CONTAINER_NAME=$($DOCKER_COMPOSE_CMD up -d aai.hbase.simpledemo.onap.org 2>&1 | grep 'Creating' | grep -v 'volume' | grep -v 'network' | awk '{ print $2; }' | head -1);
 wait_for_container $HBASE_CONTAINER_NAME ' Started SelectChannelConnector@0.0.0.0:8085';
 wait_for_container $HBASE_CONTAINER_NAME ' Started SelectChannelConnector@0.0.0.0:8080';
 wait_for_container $HBASE_CONTAINER_NAME ' Started SelectChannelConnector@0.0.0.0:9095';

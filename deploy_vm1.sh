@@ -103,11 +103,11 @@ function check_if_user_exists(){
         }
 }
 
-docker pull ${DOCKER_REGISTRY}/openecomp/aai-resources:${DOCKER_IMAGE_VERSION};
-docker tag $DOCKER_REGISTRY/openecomp/aai-resources:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/openecomp/aai-resources:latest;
+docker pull ${DOCKER_REGISTRY}/onap/aai-resources:${DOCKER_IMAGE_VERSION};
+docker tag $DOCKER_REGISTRY/onap/aai-resources:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/aai-resources:latest;
 
-docker pull ${DOCKER_REGISTRY}/openecomp/aai-traversal:${DOCKER_IMAGE_VERSION};
-docker tag $DOCKER_REGISTRY/openecomp/aai-traversal:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/openecomp/aai-traversal:latest;
+docker pull ${DOCKER_REGISTRY}/onap/aai-traversal:${DOCKER_IMAGE_VERSION};
+docker tag $DOCKER_REGISTRY/onap/aai-traversal:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/aai-traversal:latest;
 
 docker pull ${DOCKER_REGISTRY}/onap/search-data-service:${DOCKER_IMAGE_VERSION};
 docker tag $DOCKER_REGISTRY/onap/search-data-service:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/search-data-service:latest;
@@ -136,14 +136,14 @@ fi;
 
 chown -R $USER_ID:$USER_ID $RESOURCE_LOGS $TRAVERSAL_LOGS;
 
-RESOURCES_CONTAINER_NAME=$($DOCKER_COMPOSE_CMD up -d aai-resources.api.simpledemo.openecomp.org 2>&1 | grep 'Creating' | grep -v 'volume' | grep -v 'network' | awk '{ print $2; }' | head -1);
+RESOURCES_CONTAINER_NAME=$($DOCKER_COMPOSE_CMD up -d aai-resources.api.simpledemo.onap.org 2>&1 | grep 'Creating' | grep -v 'volume' | grep -v 'network' | awk '{ print $2; }' | head -1);
 wait_for_container $RESOURCES_CONTAINER_NAME '0.0.0.0:8447';
 
-GRAPH_CONTAINER_NAME=$($DOCKER_COMPOSE_CMD up -d aai-traversal.api.simpledemo.openecomp.org 2>&1 | grep 'Creating' | awk '{ print $2; }' | head -1);
+GRAPH_CONTAINER_NAME=$($DOCKER_COMPOSE_CMD up -d aai-traversal.api.simpledemo.onap.org 2>&1 | grep 'Creating' | awk '{ print $2; }' | head -1);
 wait_for_container $GRAPH_CONTAINER_NAME '0.0.0.0:8446';
 
 # Deploy haproxy and traversal and resources
-$DOCKER_COMPOSE_CMD up -d aai.api.simpledemo.openecomp.org
+$DOCKER_COMPOSE_CMD up -d aai.api.simpledemo.onap.org
 
 $DOCKER_COMPOSE_CMD up -d sparky-be
 
