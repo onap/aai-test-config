@@ -1,0 +1,5 @@
+<route xmlns="http://camel.apache.org/schema/spring" trace="true">
+     <from uri="restlet:/search/querysearch?restletMethods=get,post" />
+     <from uri="restlet:/search/querysearch/?restletMethods=get,post" />
+     <to  uri="bean:unifiedSearchProcessor?method=search"/>
+</route>

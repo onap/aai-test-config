@@ -1,0 +1,4 @@
+<route xmlns="http://camel.apache.org/schema/spring" trace="true">
+     <from uri="restlet:/visualization/entityCountHistory?restletMethods=get,post" />
+     <to uri="bean:entityCountHistoryProcessor?method=process" />
+</route>
