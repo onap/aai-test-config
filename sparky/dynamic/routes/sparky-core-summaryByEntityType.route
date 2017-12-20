@@ -1,0 +1,4 @@
+<route xmlns="http://camel.apache.org/schema/spring" trace="true">
+     <from uri="restlet:/search/summarybyentitytype?restletMethods=get,post" />
+     <to  uri="bean:aggregateSummaryProcessor?method=getSummaryByEntityType"/>
+</route>

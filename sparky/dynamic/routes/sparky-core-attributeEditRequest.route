@@ -1,0 +1,4 @@
+<route xmlns="http://camel.apache.org/schema/spring" trace="true">
+     <from uri="restlet:/editEntity?restletMethods=get,post" />
+     <to  uri="bean:attributeEditProcessor?method=editAttribute"/>
+</route>

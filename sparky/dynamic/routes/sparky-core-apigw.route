@@ -1,0 +1,4 @@
+<route xmlns="http://camel.apache.org/schema/spring" trace="true">
+   <from uri="servlet:/routerService?matchOnUriPrefix=true" />
+   <to uri="bean:aaiuiProxyProcessor?method=proxyMessage"/>
+</route>
