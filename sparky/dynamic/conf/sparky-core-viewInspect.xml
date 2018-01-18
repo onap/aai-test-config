@@ -41,6 +41,7 @@
 		<constructor-arg ref="viewInspectySchemaConfig" />
 		<constructor-arg name="numActiveInventoryWorkers" value="5" />
 		<constructor-arg ref="oxmEntityLookup" />
+        <constructor-arg ref="subscriptionConfig" />
 	</bean>
 
 	<bean id="schemaVisualizationProcessor"

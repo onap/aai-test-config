@@ -201,5 +201,27 @@
 		</property>
 
 	</bean>
+    
+    <bean id="subscriptionConfig"
+		class="org.onap.aai.sparky.subscription.config.SubscriptionConfig">
+		<property name="subscriptionTarget" value="" />
+        <property name="subscriptionOrigin" value="" />
+        <property name="subscriptionMessageType" value="" />
+        <property name="subscriptionTopic" value="" />
+        <property name="launchOITarget" value="" />
+        <property name="launchOIOrigin" value="" />
+        <property name="launchOIMessageType" value="" />
+        <property name="launchOITopic" value="" />
+	</bean>
+    
+    <bean id="subscriptionService"
+		class="org.onap.aai.sparky.subscription.services.SubscriptionService">
+		<constructor-arg ref="subscriptionConfig" />
+	</bean>
+    
+    <bean id="subscriptionServiceProcessor"
+		class="org.onap.aai.sparky.subscription.SubscriptionServiceProcessor">
+		<constructor-arg ref="subscriptionService" />
+	</bean>
 
 </beans>

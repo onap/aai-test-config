@@ -73,7 +73,7 @@
        <property name="connectTimeoutInMs" value="60000" />
        <property name="readTimeoutInMs" value="30000" />
        <property name="basicAuthUserName" value="AaiUI" />
-       <property name="basicAuthUserPassword" value="OBF:1gfr1p571unz1p4j1gg7" />
+       <property name="basicAuthPassword" value="OBF:1gfr1p571unz1p4j1gg7" />
        <property name="truststoreFileName" value="synchronizer.jks" />
        <property name="validateServerCertChain" value="false" />
        <property name="validateServerHostname" value="false" />
