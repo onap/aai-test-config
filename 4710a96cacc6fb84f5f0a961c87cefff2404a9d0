@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a93c517_6e059612",
+        "filename": "champ-service/dynamic/conf/champ-beans.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 453
+      },
+      "writtenOn": "2018-03-05T14:48:59Z",
+      "side": 1,
+      "message": "I would suggest removing the asyncResponsePublisher and asyncResponseConsumer.  Those are only required for async mode (which probably should not be the default configuration).",
+      "revId": "4710a96cacc6fb84f5f0a961c87cefff2404a9d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a93c517_110c373a",
+        "filename": "champ-service/dynamic/conf/champ-beans.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 453
+      },
+      "writtenOn": "2018-03-05T14:48:59Z",
+      "side": 1,
+      "message": "You can remove champAsycnResponsePublisher and champAsyncRequestProcessor for the same reason.",
+      "revId": "4710a96cacc6fb84f5f0a961c87cefff2404a9d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a93c517_b116a34a",
+        "filename": "champ-service/dynamic/conf/champ-beans.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 453
+      },
+      "writtenOn": "2018-03-05T14:48:59Z",
+      "side": 1,
+      "message": "All of the config from here down needs to be enabled.",
+      "revId": "4710a96cacc6fb84f5f0a961c87cefff2404a9d0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
