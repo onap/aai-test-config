@@ -124,7 +124,32 @@ services:
       options:
         max-size: "30m"
         max-file: "5"
-        
+
+  champ-service:
+    image: ${DOCKER_REGISTRY}/onap/champ-service
+    hostname: champ-service
+    volumes:
+      - ${CHAMP_LOGS}:/logs
+      - /opt/test-config/champ-service/appconfig:/opt/app/champ-service/config
+      - /opt/test-config/champ-service/dynamic:/opt/app/champ-service/dynamic
+    ports:
+      - 9522:9522
+    environment:
+      - CONFIG_HOME=/opt/app/champ-service/config/
+      - KEY_STORE_PASSWORD=OBF:1y0q1uvc1uum1uvg1pil1pjl1uuq1uvk1uuu1y10
+      - KEY_MANAGER_PASSWORD=OBF:1y0q1uvc1uum1uvg1pil1pjl1uuq1uvk1uuu1y10
+      - AJSC_JETTY_ThreadCount_MIN=5
+      - AJSC_JETTY_ThreadCount_MAX=200
+      - AJSC_JETTY_BLOCKING_QUEUE_SIZE=200
+      - MAX_HEAP=1024
+      - SERVICE_BEANS=/opt/app/champ-service/dynamic/conf
+      - GRAPHIMPL=titan-deps
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "30m"
+        max-file: "5"
+
 networks:
   default:
       driver: bridge
