@@ -8,8 +8,7 @@
        http://www.springframework.org/schema/util/spring-util.xsd
        ">
 
-
-    <bean id="champEventPublisher" class="com.att.ecomp.event.client.DMaaPEventPublisher">
+    <bean id="champEventPublisher" class="org.onap.aai.event.client.DMaaPEventPublisher">
         <constructor-arg name="host" value="mr.api.simpledemo.openecomp.org:3904"/>
         <constructor-arg name="topic" value="champRawEventsOnap"/>
         <constructor-arg name="username" value="test"/>
