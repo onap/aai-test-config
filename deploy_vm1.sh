@@ -150,8 +150,10 @@ USER_EXISTS=$(check_if_user_exists aaiadmin);
 
 if [ "${USER_EXISTS}" -eq 0 ]; then
         export USER_ID=9000;
+        export GROUP_ID=9000;
 else
         export USER_ID=$(id -u aaiadmin);
+        export GROUP_ID=$(id -g aaiadmin);
 fi;
 
 chown -R $USER_ID:$USER_ID $RESOURCE_LOGS $TRAVERSAL_LOGS;
