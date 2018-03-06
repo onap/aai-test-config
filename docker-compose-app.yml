@@ -15,7 +15,7 @@ services:
       - /opt/test-config/aai-resources/appconfig/aaiconfig.properties:/opt/app/aai-resources/resources/etc/appprops/aaiconfig.properties
       - /opt/test-config/aai-resources/appconfig/application.properties:/opt/app/aai-resources/resources/application.properties
       - /opt/test-config/aai-resources/appconfig/logback.xml:/opt/app/aai-resources/resources/logback.xml
-      - /opt/test-config/aai-resources/appconfig/localhost-access-logback.xml:/opt/app/aai-resources/resources/logback.xml
+      - /opt/test-config/aai-resources/appconfig/localhost-access-logback.xml:/opt/app/aai-resources/resources/localhost-access-logback.xml
     logging:
       driver: "json-file"
       options:

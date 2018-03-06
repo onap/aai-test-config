@@ -159,7 +159,7 @@ fi;
 chown -R $USER_ID:$USER_ID $RESOURCE_LOGS $TRAVERSAL_LOGS;
 
 RESOURCES_CONTAINER_NAME=$($DOCKER_COMPOSE_CMD up -d aai-resources.api.simpledemo.onap.org 2>&1 | grep 'Creating' | grep -v 'volume' | grep -v 'network' | awk '{ print $2; }' | head -1);
-wait_for_container $RESOURCES_CONTAINER_NAME '0.0.0.0:8447';
+wait_for_container $RESOURCES_CONTAINER_NAME 'Resources Microservice Started';
 
 GRAPH_CONTAINER_NAME=$($DOCKER_COMPOSE_CMD up -d aai-traversal.api.simpledemo.onap.org 2>&1 | grep 'Creating' | awk '{ print $2; }' | head -1);
 wait_for_container $GRAPH_CONTAINER_NAME '0.0.0.0:8446';
