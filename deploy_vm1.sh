@@ -14,6 +14,7 @@ export DATA_ROUTER_LOGS="/opt/aai/logroot/AAI-DATA-ROUTER";
 export MODEL_LOADER_LOGS="/opt/aai/logroot/AAI-MODEL-LOADER";
 export UI_LOGS="/opt/aai/logroot/AAI-UI";
 export CHAMP_LOGS="/opt/aai/logroot/AAI-CHAMP-SERVICE";
+export CRUD_LOGS="/opt/aai/logroot/AAI-CRUD-SERVICE";
 
 if [ ! -d "$RESOURCES_LOGS" ];
 then
@@ -55,6 +56,12 @@ if [ ! -d "$CHAMP_LOGS" ];
 then
     echo "Warning: Unable to find the volume directory $CHAMP_LOGS so creating it as regular directory";
     mkdir -p $CHAMP_LOGS;
+fi;
+
+if [ ! -d "$CRUD_LOGS" ];
+then
+    echo "Warning: Unable to find the volume directory $CRUD_LOGS so creating it as regular directory";
+    mkdir -p $CRUD_LOGS;
 fi;
 
 export MTU=$(/sbin/ifconfig | grep MTU | sed 's/.*MTU://' | sed 's/ .*//' | sort -n | head -1);
@@ -131,6 +138,9 @@ docker tag $DOCKER_REGISTRY/onap/sparky-be:$DOCKER_IMAGE_VERSION $DOCKER_REGISTR
 docker pull ${DOCKER_REGISTRY}/onap/champ-service:${DOCKER_IMAGE_VERSION};
 docker tag $DOCKER_REGISTRY/onap/champ-service:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/champ-service:latest;
 
+docker pull ${DOCKER_REGISTRY}/onap/crud-service:${DOCKER_IMAGE_VERSION};
+docker tag $DOCKER_REGISTRY/onap/crud-service:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/crud-service:latest;
+
 # cleanup
 $DOCKER_COMPOSE_CMD stop
 $DOCKER_COMPOSE_CMD rm -f -v
@@ -160,6 +170,8 @@ $DOCKER_COMPOSE_CMD up -d sparky-be
 $DOCKER_COMPOSE_CMD up -d model-loader datarouter aai.searchservice.simpledemo.openecomp.org
 
 $DOCKER_COMPOSE_CMD up -d champ-service
+
+$DOCKER_COMPOSE_CMD up -d crud-service
 
 echo "A&AI Microservices are successfully started";
 
