@@ -14,6 +14,8 @@
 		<property name="selectedSearchedNodeClassName" value="selectedSearchedNodeClass" />
 		<property name="numOfThreadsToFetchNodeIntegrity" value="20" />
 		<property name="makeAllNeighborsBidirectional" value="false" />
+		<property name="gizmoEnabled" value="false" />
+
 
 		<property name="shallowEntities">
 			<list value-type="java.lang.String">
@@ -34,8 +36,9 @@
 	<bean id="baseVisualizationService"
 		class="org.onap.aai.sparky.viewandinspect.services.BaseVisualizationService">
 		<constructor-arg ref="oxmModelLoader"/>
-		<constructor-arg ref="visualizationConfigurations"/> 
+		<constructor-arg ref="visualizationConfigurations"/>
 		<constructor-arg ref="activeInventoryAdapter" />
+		<constructor-arg ref="gizmoAdapter" />
 		<constructor-arg ref="elasticSearchAdapter" />
 		<constructor-arg ref="elasticSearchEndpointConfig" />
 		<constructor-arg ref="viewInspectySchemaConfig" />
@@ -49,4 +52,4 @@
 		<property name="visualizationService" ref="baseVisualizationService" />
 	</bean>
 
-</beans>		
+</beans>
