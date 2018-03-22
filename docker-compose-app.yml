@@ -60,6 +60,7 @@ services:
       - aai-traversal.api.simpledemo.onap.org
     volumes:
       - /dev/log:/dev/log
+      - /opt/test-config/haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
     logging:
       driver: "json-file"
       options:
