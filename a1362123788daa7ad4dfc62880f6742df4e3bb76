@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a93c517_d5dc2049",
+        "filename": "docker-compose-app.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 453
+      },
+      "writtenOn": "2018-03-23T16:22:07Z",
+      "side": 1,
+      "message": "This looks like the wrong password.  I assume you are using the ONAP cert/keystore?  If so, the password is \u0027onapSecret\u0027 (obfuscated value: OBF:1y0q1uvc1uum1uvg1pil1pjl1uuq1uvk1uuu1y10)",
+      "revId": "a1362123788daa7ad4dfc62880f6742df4e3bb76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
