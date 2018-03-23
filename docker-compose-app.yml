@@ -187,6 +187,24 @@ services:
         max-size: "30m"
         max-file: "5"
 
+  babel:
+    image: ${DOCKER_REGISTRY}/onap/babel
+    hostname: babel
+    volumes:
+      - ${BABEL_LOGS}:/logs
+      - /opt/test-config/babel/appconfig:/opt/app/babel/config      
+    ports:
+      - 9516:9516
+    environment:
+      - CONFIG_HOME=/opt/app/babel/config/
+      - KEY_STORE_PASSWORD=OBF:1i9a1u2a1unz1lr61wn51wn11lss1unz1u301i6o
+      - KEY_MANAGER_PASSWORD=OBF:1i9a1u2a1unz1lr61wn51wn11lss1unz1u301i6o
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "30m"
+        max-file: "5"		
+		
 networks:
   default:
       driver: bridge

@@ -15,6 +15,7 @@ export MODEL_LOADER_LOGS="/opt/aai/logroot/AAI-MODEL-LOADER";
 export UI_LOGS="/opt/aai/logroot/AAI-UI";
 export CHAMP_LOGS="/opt/aai/logroot/AAI-CHAMP-SERVICE";
 export CRUD_LOGS="/opt/aai/logroot/AAI-CRUD-SERVICE";
+export BABEL_LOGS="/opt/aai/logroot/AAI-BABEL";
 
 if [ ! -d "$RESOURCES_LOGS" ];
 then
@@ -62,6 +63,12 @@ if [ ! -d "$CRUD_LOGS" ];
 then
     echo "Warning: Unable to find the volume directory $CRUD_LOGS so creating it as regular directory";
     mkdir -p $CRUD_LOGS;
+fi;
+
+if [ ! -d "$BABEL_LOGS" ];
+then
+    echo "Warning: Unable to find the volume directory $BABEL_LOGS so creating it as regular directory";
+    mkdir -p $BABEL_LOGS;
 fi;
 
 export MTU=$(/sbin/ifconfig | grep MTU | sed 's/.*MTU://' | sed 's/ .*//' | sort -n | head -1);
@@ -141,6 +148,9 @@ docker tag $DOCKER_REGISTRY/onap/champ-service:$DOCKER_IMAGE_VERSION $DOCKER_REG
 docker pull ${DOCKER_REGISTRY}/onap/crud-service:${DOCKER_IMAGE_VERSION};
 docker tag $DOCKER_REGISTRY/onap/crud-service:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/crud-service:latest;
 
+docker pull ${DOCKER_REGISTRY}/onap/babel:${DOCKER_IMAGE_VERSION};
+docker tag $DOCKER_REGISTRY/onap/babel:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/babel:latest;
+
 # cleanup
 $DOCKER_COMPOSE_CMD stop
 $DOCKER_COMPOSE_CMD rm -f -v
@@ -171,6 +181,8 @@ $DOCKER_COMPOSE_CMD up -d model-loader datarouter aai.searchservice.simpledemo.o
 $DOCKER_COMPOSE_CMD up -d champ-service
 
 $DOCKER_COMPOSE_CMD up -d crud-service
+
+$DOCKER_COMPOSE_CMD up -d babel
 
 echo "A&AI Microservices are successfully started";
 
