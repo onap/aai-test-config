@@ -34,7 +34,7 @@ function wait_for_container() {
     done
 }
 
-docker pull ${HBASE_IMAGE}:${HBASE_VERSION};
+docker pull cassandra:2.1;
 
 # cleanup
 $DOCKER_COMPOSE_CMD stop
