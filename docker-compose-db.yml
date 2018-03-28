@@ -1,16 +1,18 @@
 version: '2'
 services:
   aai.hbase.simpledemo.onap.org:
-    image: ${HBASE_IMAGE}:${HBASE_VERSION}
+    image: cassandra:2.1
     hostname: aai.hbase.simpledemo.onap.org
     ports:
-      - 2181:2181
-      - 8080:8080
-      - 8085:8085
-      - 9090:9090
-      - 16000:16000
-      - 16010:16010
-      - 16201:16201
+      - 7000:7000
+      - 7001:7001
+      - 7199:7199
+      - 9042:9042
+    environment:
+      - CASSANDRA_SEEDS="aai.hbase.simpledemo.onap.org"
+      - CASSANDRA_DC="Heat Lab"
+      - CASSANDRA_RACK="Rack1"
+      - CASSANDRA_AUTO_BOOTSTRAP=true
     logging:
       driver: "json-file"
       options:
