@@ -168,11 +168,17 @@ fi;
 
 chown -R $USER_ID:$USER_ID $RESOURCE_LOGS $TRAVERSAL_LOGS;
 
+$DOCKER_COMPOSE_CMD run --rm aai-resources.api.simpledemo.onap.org createDBSchema.sh
+
 RESOURCES_CONTAINER_NAME=$($DOCKER_COMPOSE_CMD up -d aai-resources.api.simpledemo.onap.org 2>&1 | grep 'Creating' | grep -v 'volume' | grep -v 'network' | awk '{ print $2; }' | head -1);
 wait_for_container $RESOURCES_CONTAINER_NAME 'Resources Microservice Started';
 
 # Deploy haproxy and traversal at the same time for traversal to make updateQuery against resources using haproxy
 $DOCKER_COMPOSE_CMD up -d aai-traversal.api.simpledemo.onap.org aai.api.simpledemo.onap.org
+
+sleep 3;
+
+$DOCKER_COMPOSE_CMD run --rm aai-traversal.api.simpledemo.onap.org install/updateQueryData.sh
 
 $DOCKER_COMPOSE_CMD up -d sparky-be
 
