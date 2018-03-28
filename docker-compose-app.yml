@@ -10,8 +10,8 @@ services:
       - 8447:8447
     volumes:
       - ${RESOURCES_LOGS}:/opt/aai/logroot/AAI-RES
-      - /opt/test-config/aai-resources/appconfig/titan-realtime.properties:/opt/app/aai-resources/resources/etc/appprops/titan-realtime.properties
-      - /opt/test-config/aai-resources/appconfig/titan-cached.properties:/opt/app/aai-resources/resources/etc/appprops/titan-cached.properties
+      - /opt/test-config/aai-resources/appconfig/janusgraph-realtime.properties:/opt/app/aai-resources/resources/etc/appprops/janusgraph-realtime.properties
+      - /opt/test-config/aai-resources/appconfig/janusgraph-cached.properties:/opt/app/aai-resources/resources/etc/appprops/janusgraph-cached.properties
       - /opt/test-config/aai-resources/appconfig/aaiconfig.properties:/opt/app/aai-resources/resources/etc/appprops/aaiconfig.properties
       - /opt/test-config/aai-resources/appconfig/application.properties:/opt/app/aai-resources/resources/application.properties
       - /opt/test-config/aai-resources/appconfig/logback.xml:/opt/app/aai-resources/resources/logback.xml
@@ -35,8 +35,8 @@ services:
       - LOCAL_USER_ID=${USER_ID}
     volumes:
       - ${TRAVERSAL_LOGS}:/opt/aai/logroot/AAI-GQ
-      - /opt/test-config/aai-traversal/appconfig/titan-realtime.properties:/opt/app/aai-traversal/resources/etc/appprops/titan-realtime.properties
-      - /opt/test-config/aai-traversal/appconfig/titan-cached.properties:/opt/app/aai-traversal/resources/etc/appprops/titan-cached.properties
+      - /opt/test-config/aai-traversal/appconfig/janusgraph-realtime.properties:/opt/app/aai-traversal/resources/etc/appprops/janusgraph-realtime.properties
+      - /opt/test-config/aai-traversal/appconfig/janusgraph-cached.properties:/opt/app/aai-traversal/resources/etc/appprops/janusgraph-cached.properties
       - /opt/test-config/aai-traversal/appconfig/aaiconfig.properties:/opt/app/aai-traversal/resources/etc/appprops/aaiconfig.properties
       - /opt/test-config/aai-traversal/appconfig/application.properties:/opt/app/aai-traversal/resources/application.properties
       - /opt/test-config/aai-traversal/appconfig/logback.xml:/opt/app/aai-traversal/resources/logback.xml
@@ -203,8 +203,7 @@ services:
       driver: "json-file"
       options:
         max-size: "30m"
-        max-file: "5"		
-		
+        max-file: "5"
 networks:
   default:
       driver: bridge
