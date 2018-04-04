@@ -8,6 +8,8 @@ services:
       - 7001:7001
       - 7199:7199
       - 9042:9042
+      - 9160:9160
+    network_mode: "host"
     environment:
       - CASSANDRA_SEEDS=aai.hbase.simpledemo.onap.org
       - CASSANDRA_DC=Heat
