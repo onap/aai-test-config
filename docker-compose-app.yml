@@ -137,7 +137,7 @@ services:
         max-file: "5"
 
   champ-service:
-    image: ${DOCKER_REGISTRY}/onap/champ-service
+    image: ${DOCKER_REGISTRY}/onap/champ
     hostname: champ-service
     volumes:
       - ${CHAMP_LOGS}:/logs

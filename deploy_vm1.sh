@@ -142,8 +142,8 @@ docker tag $DOCKER_REGISTRY/onap/model-loader:$DOCKER_IMAGE_VERSION $DOCKER_REGI
 docker pull ${DOCKER_REGISTRY}/onap/sparky-be:${DOCKER_IMAGE_VERSION};
 docker tag $DOCKER_REGISTRY/onap/sparky-be:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/sparky-be:latest;
 
-docker pull ${DOCKER_REGISTRY}/onap/champ-service:${DOCKER_IMAGE_VERSION};
-docker tag $DOCKER_REGISTRY/onap/champ-service:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/champ-service:latest;
+docker pull ${DOCKER_REGISTRY}/onap/champ:${DOCKER_IMAGE_VERSION};
+docker tag $DOCKER_REGISTRY/onap/champ:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/champ:latest;
 
 docker pull ${DOCKER_REGISTRY}/onap/crud-service:${DOCKER_IMAGE_VERSION};
 docker tag $DOCKER_REGISTRY/onap/crud-service:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/crud-service:latest;
