@@ -160,9 +160,9 @@ services:
       options:
         max-size: "30m"
         max-file: "5"
-        
+
   crud-service:
-    image: ${DOCKER_REGISTRY}/onap/crud-service
+    image: ${DOCKER_REGISTRY}/onap/gizmo
     hostname: crud-service
     volumes:
       - ${CRUD_LOGS}:/logs

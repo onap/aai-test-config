@@ -145,8 +145,8 @@ docker tag $DOCKER_REGISTRY/onap/sparky-be:$DOCKER_IMAGE_VERSION $DOCKER_REGISTR
 docker pull ${DOCKER_REGISTRY}/onap/champ:${DOCKER_IMAGE_VERSION};
 docker tag $DOCKER_REGISTRY/onap/champ:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/champ:latest;
 
-docker pull ${DOCKER_REGISTRY}/onap/crud-service:${DOCKER_IMAGE_VERSION};
-docker tag $DOCKER_REGISTRY/onap/crud-service:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/crud-service:latest;
+docker pull ${DOCKER_REGISTRY}/onap/gizmo:${DOCKER_IMAGE_VERSION};
+docker tag $DOCKER_REGISTRY/onap/gizmo:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/gizmo:latest;
 
 docker pull ${DOCKER_REGISTRY}/onap/babel:${DOCKER_IMAGE_VERSION};
 docker tag $DOCKER_REGISTRY/onap/babel:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/babel:latest;
