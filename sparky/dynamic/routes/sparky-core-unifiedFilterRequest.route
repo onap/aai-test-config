@@ -1,4 +1,0 @@
-<route xmlns="http://camel.apache.org/schema/spring" trace="true">
-     <from uri="restlet:/search/unifiedFilterRequest?restletMethods=get,post" />
-     <to  uri="bean:filterProcessor?method=getFiltersWithValues"/>
-</route>

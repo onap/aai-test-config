@@ -1,4 +1,0 @@
-<route xmlns="http://camel.apache.org/schema/spring" trace="true">
-     <from uri="restlet:/subscription/getsubscription?restletMethods=get,post" />
-     <to  uri="bean:subscriptionServiceProcessor?method=getSubscription"/>
-</route>
