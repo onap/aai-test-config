@@ -212,6 +212,23 @@
     },
     {
       "key": {
+        "uuid": "5a93c517_967c19b7",
+        "filename": "sparky/appconfig/sparky-application.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1061
+      },
+      "writtenOn": "2018-04-05T13:32:54Z",
+      "side": 1,
+      "message": "The routes are gone for good now? Do we need this line?",
+      "revId": "0699b15b2214c22366a0e648ae19952dc8dfc9ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a93c517_b6a3559d",
         "filename": "sparky/appconfig/sparky-ssl-config.properties",
         "patchSetId": 1
