@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a93c517_96bf39aa",
+        "filename": "sparky/appconfig/auth/csp-cookie-filter.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 651
+      },
+      "writtenOn": "2018-04-05T12:18:11Z",
+      "side": 1,
+      "message": "Why did you rename\nportal-authentication.properties?",
+      "revId": "0699b15b2214c22366a0e648ae19952dc8dfc9ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a93c517_d6c5c13d",
+        "filename": "sparky/appconfig/auth/tomcat_keystore",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 651
+      },
+      "writtenOn": "2018-04-05T12:18:11Z",
+      "side": 1,
+      "message": "This file was no in Amsterdam.  is it required?",
+      "revId": "0699b15b2214c22366a0e648ae19952dc8dfc9ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a93c517_76762d40",
+        "filename": "sparky/appconfig/portal/portal-authentication.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 651
+      },
+      "writtenOn": "2018-04-05T12:18:11Z",
+      "side": 1,
+      "message": "We need to put the data used for the demo ONAP system.\n(The Amsterdam values should still be correct)",
+      "revId": "0699b15b2214c22366a0e648ae19952dc8dfc9ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a93c517_3690a542",
+        "filename": "sparky/appconfig/portal/portal.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 651
+      },
+      "writtenOn": "2018-04-05T12:18:11Z",
+      "side": 1,
+      "message": "Are we sure that the ONAP portal is on https now?",
+      "revId": "0699b15b2214c22366a0e648ae19952dc8dfc9ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a93c517_5693f14e",
+        "filename": "sparky/appconfig/portal/portal.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 651
+      },
+      "writtenOn": "2018-04-05T12:18:11Z",
+      "side": 1,
+      "message": "Need a value here",
+      "revId": "0699b15b2214c22366a0e648ae19952dc8dfc9ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a93c517_f699dd6e",
+        "filename": "sparky/appconfig/portal/portal.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 651
+      },
+      "writtenOn": "2018-04-05T12:18:11Z",
+      "side": 1,
+      "message": "I would still use the Amsterdam value",
+      "revId": "0699b15b2214c22366a0e648ae19952dc8dfc9ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a93c517_b6a3559d",
+        "filename": "sparky/appconfig/sparky-ssl-config.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 651
+      },
+      "writtenOn": "2018-04-05T12:18:11Z",
+      "side": 1,
+      "message": "I would reuse the inventory-ui-keystore here",
+      "revId": "0699b15b2214c22366a0e648ae19952dc8dfc9ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a93c517_76adcd87",
+        "filename": "sparky/appconfig/spring-beans/sparky-core-gizmo.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 651
+      },
+      "writtenOn": "2018-04-05T12:18:11Z",
+      "side": 1,
+      "message": "We moved to v13 in Beijing",
+      "revId": "0699b15b2214c22366a0e648ae19952dc8dfc9ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a93c517_96a89978",
+        "filename": "sparky/appconfig/spring-beans/sparky-core-sync.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 651
+      },
+      "writtenOn": "2018-04-05T12:18:11Z",
+      "side": 1,
+      "message": "Are we sure that haproxy is now accepting SSL in ONAP?",
+      "revId": "0699b15b2214c22366a0e648ae19952dc8dfc9ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a93c517_56ba11c1",
+        "filename": "sparky/appconfig/spring-beans/sparky-core.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 651
+      },
+      "writtenOn": "2018-04-05T12:18:11Z",
+      "side": 1,
+      "message": "synchronizer.jks?  Can we use another file like the inventory one?",
+      "revId": "0699b15b2214c22366a0e648ae19952dc8dfc9ed",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
