@@ -11,11 +11,13 @@
 		<property name="restAuthenticationMode" value="SSL_CERT" />
 		<property name="connectTimeoutInMs" value="60000" />
 		<property name="readTimeoutInMs" value="30000" />
-		<property name="certFileName" value="client-cert-onap.p12" />
+		<property name="certFileName" value="/auth/client-cert-onap.p12" />
 		<property name="certPassword" value="OBF:1y0q1uvc1uum1uvg1pil1pjl1uuq1uvk1uuu1y10" />
-		<property name="truststoreFileName" value="tomcat_keystore" />
+		<property name="truststoreFileName" value="/auth/inventory-ui-keystore" />
 		<property name="validateServerCertChain" value="false" />
 		<property name="validateServerHostname" value="false" />
+		<property name="resourceLoader" ref="sparkyResourceLoader" />
+		
 	</bean>
 
 	<bean id="aaiuiProxyProcessor"

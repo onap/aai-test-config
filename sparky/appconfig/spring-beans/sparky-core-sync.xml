@@ -4,6 +4,11 @@
 	       http://www.springframework.org/schema/beans
 	       http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+	<bean id="elasticSearchSchemaFactory" class="org.onap.aai.sparky.sync.ElasticSearchSchemaFactory">
+		<property name="resourceLoader" ref="sparkyResourceLoader" />
+	</bean> 
+
+
     <bean id="elasticSearchRestEndpointConfig" class="org.onap.aai.sparky.dal.rest.config.RestEndpointConfig">
        <property name="endpointIpAddress" value="aai.elasticsearch.simpledemo.openecomp.org" />
        <property name="endpointServerPort" value="9200" />
@@ -74,9 +79,10 @@
        <property name="readTimeoutInMs" value="30000" />
        <property name="basicAuthUserName" value="AaiUI" />
        <property name="basicAuthPassword" value="OBF:1gfr1p571unz1p4j1gg7" />
-       <property name="truststoreFileName" value="synchronizer.jks" />
+       <property name="truststoreFileName" value="/auth/inventory-ui-keystore" />
        <property name="validateServerCertChain" value="false" />
        <property name="validateServerHostname" value="false" />
+       <property name="resourceLoader" ref="sparkyResourceLoader" />
     </bean>
 
 	<bean id="activeInventoryAdapter" class="org.onap.aai.sparky.dal.ActiveInventoryAdapter">
@@ -118,6 +124,7 @@
 		<constructor-arg ref="syncControllerRegistry" />
 		<constructor-arg ref="suggestionEntityLookup" />
 		<constructor-arg ref="oxmEntityLookup" />
+		<constructor-arg ref="elasticSearchSchemaFactory" />
 
 		<property name="esAdapter" ref="elasticSearchAdapter" />
 		<property name="esStatConfig" ref="elasticSearchNetworkStatConfig" />
@@ -127,17 +134,17 @@
 
 		<property name="aggregationEntityToIndexMap">
 			<map>
-				<entry key="generic-vnf" value="aggegation_generic_vnf_index" />
+				<entry key="generic-vnf" value="aggregate_generic-vnf_index" />
 			</map>
 		</property>
 
 		<property name="indexNameToSchemaConfigMap">
 			<map>
-				<entry key="aggegation_generic_vnf_index">
+				<entry key="aggregate_generic-vnf_index">
 					<bean class="org.onap.aai.sparky.sync.config.ElasticSearchSchemaConfig">
 						<property name="indexName" value="aggregate_generic-vnf_index" />
 						<property name="indexDocType" value="default" />
-						<property name="indexMappingsFileName" value="/etc/dynamicMappings.json" />
+						<property name="indexMappingsFileName" value="/schemas/dynamicMappings.json" />
 					</bean>
 				</entry>
 			</map>
@@ -164,8 +171,8 @@
 	<bean id="historicalEntitySchemaConfig" class="org.onap.aai.sparky.sync.config.ElasticSearchSchemaConfig">
 		<property name="indexName" value="entitycounthistoryindex" />
 		<property name="indexDocType" value="default" />
-		<property name="indexMappingsFileName" value="/etc/entityCountHistoryMappings.json" />
-		<property name="indexSettingsFileName" value="/etc/es_settings.json" />
+		<property name="indexMappingsFileName" value="/schemas/entityCountHistoryMappings.json" />
+		<property name="indexSettingsFileName" value="/schemas/es_settings.json" />
 	</bean>
 
 	<bean id="historicalEntitySyncController"
@@ -181,6 +188,7 @@
 		<constructor-arg ref="aaiNetworkStatConfig" />
 		<constructor-arg ref="elasticSearchNetworkStatConfig" />
 		<constructor-arg ref="searchableEntityLookup" />
+		<constructor-arg ref="elasticSearchSchemaFactory" />
 
 		<property name="syncControllerRegistry" ref="syncControllerRegistry" />
 
@@ -206,8 +214,8 @@
 	<bean id="autoSuggestionEntitySchemaConfig" class="org.onap.aai.sparky.sync.config.ElasticSearchSchemaConfig">
 		<property name="indexName" value="entityautosuggestindex" />
 		<property name="indexDocType" value="default" />
-		<property name="indexMappingsFileName" value="/etc/autoSuggestMappings.json" />
-		<property name="indexSettingsFileName" value="/etc/autoSuggestSettings.json" />
+		<property name="indexMappingsFileName" value="/schemas/autoSuggestMappings.json" />
+		<property name="indexSettingsFileName" value="/schemas/autoSuggestSettings.json" />
 	</bean>
 
 	<bean id="autoSuggestionEntitySyncController"
@@ -224,6 +232,7 @@
 		<constructor-arg ref="oxmEntityLookup" />
 		<constructor-arg ref="suggestionEntityLookup" />
 		<constructor-arg ref="filtersConfig" />
+		<constructor-arg ref="elasticSearchSchemaFactory" />
 
 		<property name="syncControllerRegistry" ref="syncControllerRegistry" />
 
@@ -249,8 +258,8 @@
 	<bean id="vnfAliasEntitySchemaConfig" class="org.onap.aai.sparky.sync.config.ElasticSearchSchemaConfig">
 		<property name="indexName" value="entityautosuggestindex" />
 		<property name="indexDocType" value="default" />
-		<property name="indexMappingsFileName" value="/etc/autoSuggestMappings.json" />
-		<property name="indexSettingsFileName" value="/etc/autoSuggestSettings.json" />
+		<property name="indexMappingsFileName" value="/schemas/autoSuggestMappings.json" />
+		<property name="indexSettingsFileName" value="/schemas/autoSuggestSettings.json" />
 	</bean>
 
 	<bean id="vnfAliasSyncController"
@@ -265,6 +274,7 @@
 		<constructor-arg ref="aaiNetworkStatConfig" />
 		<constructor-arg ref="elasticSearchNetworkStatConfig" />
 		<constructor-arg ref="filtersConfig" />
+		<constructor-arg ref="elasticSearchSchemaFactory" />
 
 		<property name="syncControllerRegistry" ref="syncControllerRegistry" />
 
@@ -288,7 +298,7 @@
 	<bean id="geoEntitySchemaConfig" class="org.onap.aai.sparky.sync.config.ElasticSearchSchemaConfig">
 		<property name="indexName" value="topographicalsearchindex" />
 		<property name="indexDocType" value="default" />
-		<property name="indexMappingsFileName" value="/etc/dynamicMappings.json" />
+		<property name="indexMappingsFileName" value="/schemas/dynamicMappings.json" />
 	</bean>
 
 	<bean id="geoSyncController"
@@ -304,6 +314,7 @@
 		<constructor-arg ref="elasticSearchNetworkStatConfig" />
 		<constructor-arg ref="geoEntityLookup" />
 		<constructor-arg ref="oxmEntityLookup" />
+		<constructor-arg ref="elasticSearchSchemaFactory" />
 
 		<property name="syncControllerRegistry" ref="syncControllerRegistry" />
 
@@ -327,8 +338,8 @@
 	<bean id="viewInspectySchemaConfig" class="org.onap.aai.sparky.sync.config.ElasticSearchSchemaConfig">
 		<property name="indexName" value="entitysearchindex" />
 		<property name="indexDocType" value="default" />
-		<property name="indexMappingsFileName" value="/etc/es_mappings.json" />
-		<property name="indexSettingsFileName" value="/etc/es_settings.json" />
+		<property name="indexMappingsFileName" value="/schemas/es_mappings.json" />
+		<property name="indexSettingsFileName" value="/schemas/es_settings.json" />
 	</bean>
 
 
@@ -346,6 +357,7 @@
 		<constructor-arg ref="crossEntityReferenceLookup" />
 		<constructor-arg ref="oxmEntityLookup" />
 		<constructor-arg ref="searchableEntityLookup" />
+		<constructor-arg ref="elasticSearchSchemaFactory" />
 
 		<property name="syncControllerRegistry" ref="syncControllerRegistry" />
 
