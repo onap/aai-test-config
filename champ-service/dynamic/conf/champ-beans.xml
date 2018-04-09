@@ -25,16 +25,17 @@
         <entry key="champcore.event.stream.publisher-pool-size" value="10" value-type="java.lang.Integer"/>
         <entry key="champcore.event.stream.publisher" value-ref="champEventPublisher"/>
 
-        <entry key="graph.name" value="aaigraph-onap.dev"/>
-        <entry key="storage.backend" value="hbase"/>
+        <entry key="graph.name" value="aaigraph"/>
+        <entry key="storage.backend" value="cassandra"/>
         <entry key="storage.hostname" value="aai.hbase.simpledemo.onap.org"/>
 
-        <!-- Hbase Config -->
+        <!-- Hbase Config 
         <entry key="storage.hbase.ext.hbase.zookeeper.property.clientPort" value="2181"/>
         <entry key="storage.hbase.ext.zookeeper.znode.parent" value="/hbase-unsecure"/>
+        -->
 
         <!-- Cassandra Config -->
-        <entry key="storage.port" value="2181"/>
+        <entry key="storage.port" value="9160"/>
     </util:map>
 
     <!-- Titan Implementation -->
