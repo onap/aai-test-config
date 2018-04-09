@@ -154,7 +154,7 @@ services:
       - AJSC_JETTY_BLOCKING_QUEUE_SIZE=200
       - MAX_HEAP=1024
       - SERVICE_BEANS=/opt/app/champ-service/dynamic/conf
-      - GRAPHIMPL=titan-deps
+      - GRAPHIMPL=janus-deps
     logging:
       driver: "json-file"
       options:
