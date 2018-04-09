@@ -39,6 +39,7 @@
     </util:map>
 
     <!-- Titan Implementation -->
+    <!--
     <bean id="graphBuilder" class="org.onap.aai.champtitan.graph.impl.TitanChampGraphImpl$Builder">
         <constructor-arg value="aaigraph-onap.dev"/>
         <constructor-arg ref="props" />
@@ -46,9 +47,9 @@
     <bean id="graphImpl" class="org.onap.aai.champtitan.graph.impl.TitanChampGraphImpl">
         <constructor-arg ref="graphBuilder" />
     </bean>
+    -->
 
     <!-- Janus Implementation -->
-<!--
     <bean id="graphBuilder" class="org.onap.aai.champjanus.graph.impl.JanusChampGraphImpl$Builder">
         <constructor-arg value="<%= @CHAMP_GRAPH_NAME %>"/>
         <constructor-arg ref="props"/>
@@ -56,7 +57,6 @@
     <bean id="graphImpl" class="org.onap.aai.champjanus.graph.impl.JanusChampGraphImpl">
         <constructor-arg ref="graphBuilder"/>
     </bean>
--->
 
     <bean id="champUUIDService" class="org.onap.champ.service.ChampUUIDService">
         <constructor-arg name="graphImpl" ref="graphImpl"/>
