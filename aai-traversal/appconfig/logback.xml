@@ -341,6 +341,16 @@
 			<pattern>"%d [%thread] %-5level %logger{1024} - %msg%n"</pattern>
 		</encoder>
 	</appender>
+	<appender name="miscLogs" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <file>${logDirectory}/misc/misc.log</file>
+                <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                        <fileNamePattern>${logDirectory}/misc/misc.log.%d{yyyy-MM-dd}</fileNamePattern>
+                </rollingPolicy>
+                <encoder>
+                        <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{1024} - %msg%n                                                              
+                        </pattern>
+		</encoder>
+        </appender>
 	<logger name="AuditRecord" level="INFO" additivity="false">
 		<appender-ref ref="auditLogs" />
 	</logger>
@@ -350,6 +360,9 @@
 	<logger name="PerfTrackerRecord" level="INFO" additivity="false">
 		<appender-ref ref="perfLogs" />
 	</logger>
+	<logger name="MiscRecord" level="INFO" additivity="false">
+                <appender-ref ref="miscLogs" />
+        </logger>
 	<!-- logback jms appenders & loggers definition ends here -->
 
 	<logger name="org.onap.aai.interceptors.post" level="DEBUG"
