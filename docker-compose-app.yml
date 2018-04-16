@@ -2,8 +2,12 @@ version: '2'
 services:
   aai-resources.api.simpledemo.onap.org:
     image: ${DOCKER_REGISTRY}/onap/aai-resources
-    hostname: aai-resources.api.simpledemo.onap.org
     environment:
+      - http_proxy=$http_proxy
+      - https_proxy=$https_proxy
+      - HTTP_PROXY=$HTTP_PROXY
+      - HTTPS_PROXY=$HTTPS_PROXY
+      - docker_gitbranch=master
       - LOCAL_USER_ID=${USER_ID}
       - LOCAL_GROUP_ID=${GROUP_ID}
       - SKIP_CREATE_DB_SCHEMA_AT_STARTUP=true
@@ -11,14 +15,14 @@ services:
       - 8447:8447
     volumes:
       - ${RESOURCES_LOGS}:/opt/aai/logroot/AAI-RES
-      - /opt/test-config/aai-resources/appconfig/janusgraph-realtime.properties:/opt/app/aai-resources/resources/etc/appprops/janusgraph-realtime.properties
-      - /opt/test-config/aai-resources/appconfig/janusgraph-cached.properties:/opt/app/aai-resources/resources/etc/appprops/janusgraph-cached.properties
-      - /opt/test-config/aai-resources/appconfig/aaiconfig.properties:/opt/app/aai-resources/resources/etc/appprops/aaiconfig.properties
-      - /opt/test-config/aai-resources/appconfig/application.properties:/opt/app/aai-resources/resources/application.properties
-      - /opt/test-config/aai-resources/appconfig/logback.xml:/opt/app/aai-resources/resources/logback.xml
-      - /opt/test-config/aai-resources/appconfig/localhost-access-logback.xml:/opt/app/aai-resources/resources/localhost-access-logback.xml
-      - /opt/test-config/aai-resources/appconfig/aai_keystore:/opt/app/aai-resources/resources/etc/auth/aai_keystore
-      - /opt/test-config/aai-resources/appconfig/realm.properties:/opt/app/aai-resources/resources/etc/auth/realm.properties
+      - ./aai-resources/appconfig/janusgraph-realtime.properties:/opt/app/aai-resources/resources/etc/appprops/janusgraph-realtime.properties
+      - ./aai-resources/appconfig/janusgraph-cached.properties:/opt/app/aai-resources/resources/etc/appprops/janusgraph-cached.properties
+      - ./aai-resources/appconfig/aaiconfig.properties:/opt/app/aai-resources/resources/etc/appprops/aaiconfig.properties
+      - ./aai-resources/appconfig/application.properties:/opt/app/aai-resources/resources/application.properties
+      - ./aai-resources/appconfig/logback.xml:/opt/app/aai-resources/resources/logback.xml
+      - ./aai-resources/appconfig/localhost-access-logback.xml:/opt/app/aai-resources/resources/localhost-access-logback.xml
+      - ./aai-resources/appconfig/aai_keystore:/opt/app/aai-resources/resources/etc/auth/aai_keystore
+      - ./aai-resources/appconfig/realm.properties:/opt/app/aai-resources/resources/etc/auth/realm.properties
     logging:
       driver: "json-file"
       options:
@@ -33,14 +37,14 @@ services:
       - DISABLE_UPDATE_QUERY=true
     volumes:
       - ${TRAVERSAL_LOGS}:/opt/aai/logroot/AAI-GQ
-      - /opt/test-config/aai-traversal/appconfig/janusgraph-realtime.properties:/opt/app/aai-traversal/resources/etc/appprops/janusgraph-realtime.properties
-      - /opt/test-config/aai-traversal/appconfig/janusgraph-cached.properties:/opt/app/aai-traversal/resources/etc/appprops/janusgraph-cached.properties
-      - /opt/test-config/aai-traversal/appconfig/aaiconfig.properties:/opt/app/aai-traversal/resources/etc/appprops/aaiconfig.properties
-      - /opt/test-config/aai-traversal/appconfig/application.properties:/opt/app/aai-traversal/resources/application.properties
-      - /opt/test-config/aai-traversal/appconfig/logback.xml:/opt/app/aai-traversal/resources/logback.xml
-      - /opt/test-config/aai-traversal/appconfig/localhost-access-logback.xml:/opt/app/aai-traversal/resources/localhost-access-logback.xml
-      - /opt/test-config/aai-traversal/appconfig/aai_keystore:/opt/app/aai-traversal/resources/etc/auth/aai_keystore
-      - /opt/test-config/aai-traversal/appconfig/realm.properties:/opt/app/aai-traversal/resources/etc/auth/realm.properties
+      - ./aai-traversal/appconfig/janusgraph-realtime.properties:/opt/app/aai-traversal/resources/etc/appprops/janusgraph-realtime.properties
+      - ./aai-traversal/appconfig/janusgraph-cached.properties:/opt/app/aai-traversal/resources/etc/appprops/janusgraph-cached.properties
+      - ./aai-traversal/appconfig/aaiconfig.properties:/opt/app/aai-traversal/resources/etc/appprops/aaiconfig.properties
+      - ./aai-traversal/appconfig/application.properties:/opt/app/aai-traversal/resources/application.properties
+      - ./aai-traversal/appconfig/logback.xml:/opt/app/aai-traversal/resources/logback.xml
+      - ./aai-traversal/appconfig/localhost-access-logback.xml:/opt/app/aai-traversal/resources/localhost-access-logback.xml
+      - ./aai-traversal/appconfig/aai_keystore:/opt/app/aai-traversal/resources/etc/auth/aai_keystore
+      - ./aai-traversal/appconfig/realm.properties:/opt/app/aai-traversal/resources/etc/auth/realm.properties
     ports:
       - 8446:8446
     logging:
@@ -58,7 +62,7 @@ services:
       - aai-traversal.api.simpledemo.onap.org
     volumes:
       - /dev/log:/dev/log
-      - /opt/test-config/haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+      - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
     logging:
       driver: "json-file"
       options:
@@ -70,7 +74,7 @@ services:
     hostname: aai.searchservice.simpledemo.openecomp.org
     volumes:
       - ${SEARCH_LOGS}:/logs
-      - /opt/test-config/search-data-service/appconfig:/opt/app/search-data-service/config
+      - ./search-data-service/appconfig:/opt/app/search-data-service/config
     ports:
       - 9509:9509
     environment:
@@ -88,8 +92,8 @@ services:
     hostname: data-router
     volumes:
       - ${DATA_ROUTER_LOGS}:/logs
-      - /opt/test-config/data-router/appconfig:/opt/app/data-router/config
-      - /opt/test-config/data-router/dynamic:/opt/app/data-router/dynamic
+      - ./data-router/appconfig:/opt/app/data-router/config
+      - ./data-router/dynamic:/opt/app/data-router/dynamic
     ports:
       - 9502:9502
     environment:
@@ -109,7 +113,7 @@ services:
     hostname: model-loader
     volumes:
       - ${MODEL_LOADER_LOGS}:/logs
-      - /opt/test-config/model-loader/appconfig:/opt/app/model-loader/config
+      - ./model-loader/appconfig:/opt/app/model-loader/config
     environment:
       - CONFIG_HOME=/opt/app/model-loader/config/
     logging:
@@ -123,7 +127,7 @@ services:
     hostname: sparky-be
     volumes:
       - ${UI_LOGS}:/logs
-      - /opt/test-config/sparky/appconfig:/opt/app/sparky/appconfig
+      - ./sparky/appconfig:/opt/app/sparky/appconfig
     ports:
       - 9517:9517
     environment:
@@ -142,8 +146,8 @@ services:
     hostname: champ-service
     volumes:
       - ${CHAMP_LOGS}:/logs
-      - /opt/test-config/champ-service/appconfig:/opt/app/champ-service/config
-      - /opt/test-config/champ-service/dynamic:/opt/app/champ-service/dynamic
+      - ./champ-service/appconfig:/opt/app/champ-service/config
+      - ./champ-service/dynamic:/opt/app/champ-service/dynamic
     ports:
       - 9522:9522
     environment:
@@ -167,8 +171,8 @@ services:
     hostname: crud-service
     volumes:
       - ${CRUD_LOGS}:/logs
-      - /opt/test-config/crud-service/appconfig:/opt/app/crud-service/config
-      - /opt/test-config/crud-service/dynamic:/opt/app/crud-service/dynamic
+      - ./crud-service/appconfig:/opt/app/crud-service/config
+      - ./crud-service/dynamic:/opt/app/crud-service/dynamic
     ports:
       - 9520:9520
     environment:
@@ -191,7 +195,7 @@ services:
     hostname: babel
     volumes:
       - ${BABEL_LOGS}:/logs
-      - /opt/test-config/babel/appconfig:/opt/app/babel/config      
+      - ./babel/appconfig:/opt/app/babel/config
     ports:
       - 9516:9516
     environment:
