@@ -2,7 +2,6 @@ version: '2'
 services:
   aai.hbase.simpledemo.onap.org:
     image: cassandra:2.1
-    hostname: aai.hbase.simpledemo.onap.org
     ports:
       - 7000:7000
       - 7001:7001
@@ -11,7 +10,6 @@ services:
       - 9160:9160
     network_mode: "host"
     environment:
-      - CASSANDRA_SEEDS=aai.hbase.simpledemo.onap.org
       - CASSANDRA_DC=Heat
       - CASSANDRA_RACK=Rack1
       - CASSANDRA_AUTO_BOOTSTRAP=true
@@ -22,12 +20,11 @@ services:
         max-file: "5"
   aai.elasticsearch.simpledemo.openecomp.org:
     image: elasticsearch:2.4.1
-    hostname: aai.elasticsearch.simpledemo.openecomp.org
     container_name: elasticsearch
     ports:
       - "9200:9200"
     volumes:
-      - /opt/test-config/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
       - es-data:/usr/share/elasticsearch/data
     logging:
       driver: "json-file"
