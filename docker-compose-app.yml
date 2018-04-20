@@ -59,6 +59,7 @@ services:
     volumes:
       - /dev/log:/dev/log
       - /opt/test-config/haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+      - /opt/test-config/haproxy/aai.pem:/etc/ssl/private/aai.pem
     logging:
       driver: "json-file"
       options:
