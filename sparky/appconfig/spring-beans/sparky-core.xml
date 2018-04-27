@@ -5,7 +5,7 @@
 	       http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 				 <bean id="searchServiceRestEndpointConfig" class="org.onap.aai.sparky.dal.rest.config.RestEndpointConfig">
-			 		<property name="endpointIpAddress" value="aai.search.simpledemo.openecomp.org" />
+			 		<property name="endpointIpAddress" value="aai.searchservice.simpledemo.openecomp.org" />
 			 		<property name="endpointServerPort" value="9509" />
 			 		<property name="numRequestRetries" value="5" />
 			 		<property name="restAuthenticationMode" value="SSL_CERT" />

@@ -71,14 +71,14 @@
 	</bean>
 
     <bean id="aaiRestEndpointConfig" class="org.onap.aai.sparky.dal.rest.config.RestEndpointConfig">
-       <property name="endpointIpAddress" value="aai.api.simpledemo.openecomp.org" />
+       <property name="endpointIpAddress" value="aai.api.simpledemo.onap.org" />
        <property name="endpointServerPort" value="8443" />
        <property name="numRequestRetries" value="5" />
        <property name="restAuthenticationMode" value="SSL_BASIC" />
        <property name="connectTimeoutInMs" value="60000" />
        <property name="readTimeoutInMs" value="30000" />
-       <property name="basicAuthUserName" value="AaiUI" />
-       <property name="basicAuthPassword" value="OBF:1gfr1p571unz1p4j1gg7" />
+       <property name="basicAuthUserName" value="AAI" />
+       <property name="basicAuthPassword" value="AAI" />
        <property name="truststoreFileName" value="/auth/inventory-ui-keystore" />
        <property name="validateServerCertChain" value="false" />
        <property name="validateServerHostname" value="false" />
