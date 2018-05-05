@@ -191,7 +191,7 @@ services:
     image: ${DOCKER_REGISTRY}/onap/babel
     hostname: babel
     volumes:
-      - ${BABEL_LOGS}:/logs
+      - ${BABEL_LOGS}:/opt/app/babel/logs/AAI-BAS
       - /opt/test-config/babel/appconfig:/opt/app/babel/config      
     ports:
       - 9516:9516
