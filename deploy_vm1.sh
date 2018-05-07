@@ -15,7 +15,7 @@ export MODEL_LOADER_LOGS="/opt/aai/logroot/AAI-MODEL-LOADER";
 export UI_LOGS="/opt/aai/logroot/AAI-UI";
 export CHAMP_LOGS="/opt/aai/logroot/AAI-CHAMP-SERVICE";
 export CRUD_LOGS="/opt/aai/logroot/AAI-CRUD-SERVICE";
-export BABEL_LOGS="/opt/aai/logroot/AAI-BABEL";
+export BABEL_LOGS="/opt/aai/logroot/AAI-BAS";
 
 if [ ! -d "$RESOURCES_LOGS" ];
 then
