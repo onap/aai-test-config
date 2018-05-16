@@ -167,6 +167,7 @@ else
 fi;
 
 chown -R $USER_ID:$USER_ID $RESOURCE_LOGS $TRAVERSAL_LOGS;
+chown -R 341790:492381 $BABEL_LOGS;
 
 $DOCKER_COMPOSE_CMD run --rm aai-resources.api.simpledemo.onap.org createDBSchema.sh
 
