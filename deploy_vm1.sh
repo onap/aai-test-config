@@ -83,6 +83,16 @@ DMAAP_TOPIC=$(cat /opt/config/dmaap_topic.txt)
 DOCKER_IMAGE_VERSION=$(cat /opt/config/docker_version.txt)
 DOCKER_REGISTRY=${NEXUS_DOCKER_REPO}
 
+RESOURCES_DOCKER_IMAGE_VERSION=1.2.1
+TRAVERSAL_DOCKER_IMAGE_VERSION=1.2.1
+SEARCH_DATA_SERVICE_DOCKER_IMAGE_VERSION=1.2.1
+DATA_ROUTER_DOCKER_IMAGE_VERSION=1.2.2
+MODEL_LOADER_DOCKER_IMAGE_VERSION=1.2.1
+SPARKY_BE_DOCKER_IMAGE_VERSION=1.2.1
+CHAMP_DOCKER_IMAGE_VERSION=1.2.3
+GIZMO_DOCKER_IMAGE_VERSION=1.2.0
+BABEL_DOCKER_IMAGE_VERSION=1.2.0
+
 docker login -u $NEXUS_USERNAME -p $NEXUS_PASSWD $NEXUS_DOCKER_REPO
 
 function wait_for_container() {
@@ -124,32 +134,32 @@ function check_if_user_exists(){
         }
 }
 
-docker pull ${DOCKER_REGISTRY}/onap/aai-resources:${DOCKER_IMAGE_VERSION};
-docker tag $DOCKER_REGISTRY/onap/aai-resources:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/aai-resources:latest;
+docker pull ${DOCKER_REGISTRY}/onap/aai-resources:${RESOURCES_DOCKER_IMAGE_VERSION};
+docker tag $DOCKER_REGISTRY/onap/aai-resources:$RESOURCES_DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/aai-resources:latest;
 
-docker pull ${DOCKER_REGISTRY}/onap/aai-traversal:${DOCKER_IMAGE_VERSION};
-docker tag $DOCKER_REGISTRY/onap/aai-traversal:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/aai-traversal:latest;
+docker pull ${DOCKER_REGISTRY}/onap/aai-traversal:${TRAVERSAL_DOCKER_IMAGE_VERSION};
+docker tag $DOCKER_REGISTRY/onap/aai-traversal:$TRAVERSAL_DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/aai-traversal:latest;
 
-docker pull ${DOCKER_REGISTRY}/onap/search-data-service:${DOCKER_IMAGE_VERSION};
-docker tag $DOCKER_REGISTRY/onap/search-data-service:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/search-data-service:latest;
+docker pull ${DOCKER_REGISTRY}/onap/search-data-service:${SEARCH_DATA_SERVICE_DOCKER_IMAGE_VERSION};
+docker tag $DOCKER_REGISTRY/onap/search-data-service:$SEARCH_DATA_SERVICE_DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/search-data-service:latest;
 
-docker pull ${DOCKER_REGISTRY}/onap/data-router:${DOCKER_IMAGE_VERSION};
-docker tag $DOCKER_REGISTRY/onap/data-router:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/data-router:latest;
+docker pull ${DOCKER_REGISTRY}/onap/data-router:${DATA_ROUTER_DOCKER_IMAGE_VERSION};
+docker tag $DOCKER_REGISTRY/onap/data-router:$DATA_ROUTER_DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/data-router:latest;
 
-docker pull ${DOCKER_REGISTRY}/onap/model-loader:${DOCKER_IMAGE_VERSION};
-docker tag $DOCKER_REGISTRY/onap/model-loader:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/model-loader:latest;
+docker pull ${DOCKER_REGISTRY}/onap/model-loader:${MODEL_LOADER_DOCKER_IMAGE_VERSION};
+docker tag $DOCKER_REGISTRY/onap/model-loader:$MODEL_LOADER_DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/model-loader:latest;
 
-docker pull ${DOCKER_REGISTRY}/onap/sparky-be:${DOCKER_IMAGE_VERSION};
-docker tag $DOCKER_REGISTRY/onap/sparky-be:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/sparky-be:latest;
+docker pull ${DOCKER_REGISTRY}/onap/sparky-be:${SPARKY_BE_DOCKER_IMAGE_VERSION};
+docker tag $DOCKER_REGISTRY/onap/sparky-be:$SPARKY_BE_DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/sparky-be:latest;
 
-docker pull ${DOCKER_REGISTRY}/onap/champ:${DOCKER_IMAGE_VERSION};
-docker tag $DOCKER_REGISTRY/onap/champ:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/champ:latest;
+docker pull ${DOCKER_REGISTRY}/onap/champ:${CHAMP_DOCKER_IMAGE_VERSION};
+docker tag $DOCKER_REGISTRY/onap/champ:$CHAMP_DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/champ:latest;
 
-docker pull ${DOCKER_REGISTRY}/onap/gizmo:${DOCKER_IMAGE_VERSION};
-docker tag $DOCKER_REGISTRY/onap/gizmo:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/gizmo:latest;
+docker pull ${DOCKER_REGISTRY}/onap/gizmo:${GIZMO_DOCKER_IMAGE_VERSION};
+docker tag $DOCKER_REGISTRY/onap/gizmo:$GIZMO_DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/gizmo:latest;
 
-docker pull ${DOCKER_REGISTRY}/onap/babel:${DOCKER_IMAGE_VERSION};
-docker tag $DOCKER_REGISTRY/onap/babel:$DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/babel:latest;
+docker pull ${DOCKER_REGISTRY}/onap/babel:${BABEL_DOCKER_IMAGE_VERSION};
+docker tag $DOCKER_REGISTRY/onap/babel:$BABEL_DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/babel:latest;
 
 # cleanup
 $DOCKER_COMPOSE_CMD stop
