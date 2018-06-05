@@ -74,7 +74,7 @@ fi;
 export MTU=$(/sbin/ifconfig | grep MTU | sed 's/.*MTU://' | sed 's/ .*//' | sort -n | head -1);
 export DOCKER_REGISTRY="${DOCKER_REGISTRY:-localhost:5000}";
 export AAI_HAPROXY_IMAGE="${AAI_HAPROXY_IMAGE:-aaionap/haproxy}";
-export AAI_HAPROXY_VERSION="${AAI_HAPROXY_VERSION:-1.2.2}";
+export AAI_HAPROXY_VERSION="${AAI_HAPROXY_VERSION:-1.2.3}";
 
 NEXUS_USERNAME=$(cat /opt/config/nexus_username.txt)
 NEXUS_PASSWD=$(cat /opt/config/nexus_password.txt)
