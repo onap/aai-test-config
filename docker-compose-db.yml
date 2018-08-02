@@ -21,7 +21,7 @@ services:
         max-size: "30m"
         max-file: "5"
   aai.elasticsearch.simpledemo.openecomp.org:
-    image: elasticsearch:2.4.1
+    image: elasticsearch:6.1.2
     hostname: aai.elasticsearch.simpledemo.openecomp.org
     container_name: elasticsearch
     ports:
