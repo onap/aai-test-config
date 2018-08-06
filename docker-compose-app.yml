@@ -186,6 +186,30 @@ services:
       options:
         max-size: "30m"
         max-file: "5"
+        
+  spike-service:
+    image: ${DOCKER_REGISTRY}/onap/spike
+    hostname: spike-service
+    volumes:
+      - ${SPIKE_LOGS}:/logs
+      - /opt/test-config/spike-service/appconfig:/opt/app/spike-service/config
+      - /opt/test-config/spike-service/dynamic:/opt/app/spike-service/dynamic
+    ports:
+      - 9518:9518
+    environment:
+      - CONFIG_HOME=/opt/app/spike-service/config/
+      - KEY_STORE_PASSWORD=OBF:1y0q1uvc1uum1uvg1pil1pjl1uuq1uvk1uuu1y10
+      - KEY_MANAGER_PASSWORD=OBF:1y0q1uvc1uum1uvg1pil1pjl1uuq1uvk1uuu1y10
+      - AJSC_JETTY_ThreadCount_MIN=5
+      - AJSC_JETTY_ThreadCount_MAX=200
+      - AJSC_JETTY_BLOCKING_QUEUE_SIZE=200
+      - MAX_HEAP=1024
+      - SERVICE_BEANS=/opt/app/spike-service/dynamic/conf
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "30m"
+        max-file: "5"
 
   babel:
     image: ${DOCKER_REGISTRY}/onap/babel

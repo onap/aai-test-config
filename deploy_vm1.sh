@@ -15,6 +15,7 @@ export MODEL_LOADER_LOGS="/opt/aai/logroot/AAI-MODEL-LOADER";
 export UI_LOGS="/opt/aai/logroot/AAI-UI";
 export CHAMP_LOGS="/opt/aai/logroot/AAI-CHAMP-SERVICE";
 export CRUD_LOGS="/opt/aai/logroot/AAI-CRUD-SERVICE";
+export SPIKE_LOGS="/opt/aai/logroot/AAI-SPIKE-SERVICE";
 export BABEL_LOGS="/opt/aai/logroot/AAI-BAS";
 
 if [ ! -d "$RESOURCES_LOGS" ];
@@ -65,6 +66,12 @@ then
     mkdir -p $CRUD_LOGS;
 fi;
 
+if [ ! -d "$SPIKE_LOGS" ];
+then
+    echo "Warning: Unable to find the volume directory $SPIKE_LOGS so creating it as regular directory";
+    mkdir -p $SPIKE_LOGS;
+fi;
+
 if [ ! -d "$BABEL_LOGS" ];
 then
     echo "Warning: Unable to find the volume directory $BABEL_LOGS so creating it as regular directory";
@@ -91,6 +98,7 @@ MODEL_LOADER_DOCKER_IMAGE_VERSION=1.2.1
 SPARKY_BE_DOCKER_IMAGE_VERSION=1.2.1
 CHAMP_DOCKER_IMAGE_VERSION=1.2.3
 GIZMO_DOCKER_IMAGE_VERSION=1.2.0
+SPIKE_DOCKER_IMAGE_VERSION=1.2.0
 BABEL_DOCKER_IMAGE_VERSION=1.2.0
 
 docker login -u $NEXUS_USERNAME -p $NEXUS_PASSWD $NEXUS_DOCKER_REPO
@@ -158,6 +166,9 @@ docker tag $DOCKER_REGISTRY/onap/champ:$CHAMP_DOCKER_IMAGE_VERSION $DOCKER_REGIS
 docker pull ${DOCKER_REGISTRY}/onap/gizmo:${GIZMO_DOCKER_IMAGE_VERSION};
 docker tag $DOCKER_REGISTRY/onap/gizmo:$GIZMO_DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/gizmo:latest;
 
+docker pull ${DOCKER_REGISTRY}/onap/spike:${SPIKE_DOCKER_IMAGE_VERSION};
+docker tag $DOCKER_REGISTRY/onap/spike:$SPIKE_DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/spike:latest;
+
 docker pull ${DOCKER_REGISTRY}/onap/babel:${BABEL_DOCKER_IMAGE_VERSION};
 docker tag $DOCKER_REGISTRY/onap/babel:$BABEL_DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/babel:latest;
 
@@ -198,6 +209,8 @@ $DOCKER_COMPOSE_CMD up -d model-loader datarouter aai.searchservice.simpledemo.o
 $DOCKER_COMPOSE_CMD up -d champ-service
 
 $DOCKER_COMPOSE_CMD up -d crud-service
+
+$DOCKER_COMPOSE_CMD up -d spike-service
 
 $DOCKER_COMPOSE_CMD up -d babel
 

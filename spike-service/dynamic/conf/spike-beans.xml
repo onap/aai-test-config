@@ -1,0 +1,49 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:util="http://www.springframework.org/schema/util"
+   xsi:schemaLocation="
+	       http://www.springframework.org/schema/beans
+	       http://www.springframework.org/schema/beans/spring-beans.xsd
+	       http://www.springframework.org/schema/util
+	       http://www.springframework.org/schema/util/spring-util.xsd
+	       ">
+
+   <!-- 
+   <bean id="eventConsumer" class="com.att.ecomp.event.client.KafkaEventConsumer" > 
+      <constructor-arg name="topic" value="mytopic" /> 
+      <constructor-arg name="groupId" value="mygroupId" /> 
+      <constructor-arg name="hosts" ref="hosts" /> 
+   </bean> 
+   -->
+
+   <bean id="eventPublisher" class="org.onap.aai.event.client.DMaaPEventPublisher">
+      <constructor-arg name="host" value="mr.api.simpledemo.openecomp.org:3904" />
+      <constructor-arg name="topic" value="SpikeRawEventsOnap" />
+      <constructor-arg name="username" value="test" />
+      <constructor-arg name="password" value="test" />
+      <constructor-arg name="maxBatchSize" value="100" />
+      <constructor-arg name="maxAgeMs" value="250" />
+      <constructor-arg name="delayBetweenBatchesMs" value="50" />
+      <constructor-arg name="transportType" value="HTTPAUTH" />
+   </bean>
+
+   <bean id="eventConsumer" class="org.onap.aai.event.client.DMaaPEventConsumer">
+      <constructor-arg name="host" value="mr.api.simpledemo.openecomp.org:3904" />
+      <constructor-arg name="topic" value="champRawEventsOnap" />
+      <constructor-arg name="username" value="test" />
+      <constructor-arg name="password" value="test" />
+      <constructor-arg name="consumerGroup" value="spike-onap" />
+      <constructor-arg name="consumerId" value="spike-onap" />
+      <constructor-arg name="timeoutMs" value="1000" />
+      <constructor-arg name="messageLimit" value="100" />
+      <constructor-arg name="transportType" value="HTTPAUTH" />
+      <constructor-arg name="protocol" value="http" />
+      <constructor-arg name="filter">
+         <null />
+      </constructor-arg>
+   </bean>
+
+   <bean id="spikeService" class="org.onap.aai.spike.service.SpikeService" init-method="startup">
+      <constructor-arg ref="eventConsumer" />
+      <constructor-arg ref="eventPublisher" />
+   </bean>
+</beans>
