@@ -6,7 +6,6 @@ services:
     environment:
       - LOCAL_USER_ID=${USER_ID}
       - LOCAL_GROUP_ID=${GROUP_ID}
-      - SKIP_CREATE_DB_SCHEMA_AT_STARTUP=true
     ports:
       - 8447:8447
     volumes:
@@ -19,6 +18,7 @@ services:
       - /opt/test-config/aai-resources/appconfig/localhost-access-logback.xml:/opt/app/aai-resources/resources/localhost-access-logback.xml
       - /opt/test-config/aai-resources/appconfig/aai_keystore:/opt/app/aai-resources/resources/etc/auth/aai_keystore
       - /opt/test-config/aai-resources/appconfig/realm.properties:/opt/app/aai-resources/resources/etc/auth/realm.properties
+      - /opt/test-config/aai-schema/:/opt/app/aai-resources/resources/schema/
     logging:
       driver: "json-file"
       options:
@@ -41,8 +41,33 @@ services:
       - /opt/test-config/aai-traversal/appconfig/localhost-access-logback.xml:/opt/app/aai-traversal/resources/localhost-access-logback.xml
       - /opt/test-config/aai-traversal/appconfig/aai_keystore:/opt/app/aai-traversal/resources/etc/auth/aai_keystore
       - /opt/test-config/aai-traversal/appconfig/realm.properties:/opt/app/aai-traversal/resources/etc/auth/realm.properties
+      - /opt/test-config/aai-schema/:/opt/app/aai-resources/resources/schema/
     ports:
       - 8446:8446
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "30m"
+        max-file: "5"
+  aai-graphadmin.api.simpledemo.onap.org:
+    image: ${DOCKER_REGISTRY}/onap/aai-traversal
+    hostname: aai-graphadmin.api.simpledemo.onap.org
+    environment:
+      - LOCAL_USER_ID=${USER_ID}
+      - LOCAL_GROUP_ID=${GROUP_ID}
+    volumes:
+      - ${GRAPHADMIN_LOGS}:/opt/aai/logroot/AAI-GA
+      - /opt/test-config/aai-graphadmin/appconfig/janusgraph-realtime.properties:/opt/app/aai-graphadmin/resources/etc/appprops/janusgraph-realtime.properties
+      - /opt/test-config/aai-graphadmin/appconfig/janusgraph-cached.properties:/opt/app/aai-graphadmin/resources/etc/appprops/janusgraph-cached.properties
+      - /opt/test-config/aai-graphadmin/appconfig/aaiconfig.properties:/opt/app/aai-graphadmin/resources/etc/appprops/aaiconfig.properties
+      - /opt/test-config/aai-graphadmin/appconfig/application.properties:/opt/app/aai-graphadmin/resources/application.properties
+      - /opt/test-config/aai-graphadmin/appconfig/logback.xml:/opt/app/aai-graphadmin/resources/logback.xml
+      - /opt/test-config/aai-graphadmin/appconfig/localhost-access-logback.xml:/opt/app/aai-graphadmin/resources/localhost-access-logback.xml
+      - /opt/test-config/aai-graphadmin/appconfig/aai_keystore:/opt/app/aai-graphadmin/resources/etc/auth/aai_keystore
+      - /opt/test-config/aai-graphadmin/appconfig/realm.properties:/opt/app/aai-graphadmin/resources/etc/auth/realm.properties
+      - /opt/test-config/aai-schema/:/opt/app/aai-resources/resources/schema/
+    ports:
+      - 8449:8449
     logging:
       driver: "json-file"
       options:

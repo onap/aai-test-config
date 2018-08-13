@@ -9,6 +9,7 @@ fi
 
 export RESOURCES_LOGS="/opt/aai/logroot/AAI-RESOURCES";
 export TRAVERSAL_LOGS="/opt/aai/logroot/AAI-TRAVERSAL";
+export GRAPHADMIN_LOGS="/opt/aai/logroot/AAI-GRAPHADMIN";
 export SEARCH_LOGS="/opt/aai/logroot/AAI-SEARCH";
 export DATA_ROUTER_LOGS="/opt/aai/logroot/AAI-DATA-ROUTER";
 export MODEL_LOADER_LOGS="/opt/aai/logroot/AAI-MODEL-LOADER";
@@ -17,6 +18,12 @@ export CHAMP_LOGS="/opt/aai/logroot/AAI-CHAMP-SERVICE";
 export CRUD_LOGS="/opt/aai/logroot/AAI-CRUD-SERVICE";
 export SPIKE_LOGS="/opt/aai/logroot/AAI-SPIKE-SERVICE";
 export BABEL_LOGS="/opt/aai/logroot/AAI-BAS";
+
+if [ ! -d "$GRAPHADMIN_LOGS" ];
+then
+    echo "Warning: Unable to find the volume directory $GRAPHADMIN_LOGS so creating it as regular directory";
+    mkdir -p $GRAPHADMIN_LOGS;
+fi;
 
 if [ ! -d "$RESOURCES_LOGS" ];
 then
@@ -90,8 +97,9 @@ DMAAP_TOPIC=$(cat /opt/config/dmaap_topic.txt)
 DOCKER_IMAGE_VERSION=$(cat /opt/config/docker_version.txt)
 DOCKER_REGISTRY=${NEXUS_DOCKER_REPO}
 
-RESOURCES_DOCKER_IMAGE_VERSION=1.2.2
-TRAVERSAL_DOCKER_IMAGE_VERSION=1.2.2
+RESOURCES_DOCKER_IMAGE_VERSION=1.3-STAGING-latest
+TRAVERSAL_DOCKER_IMAGE_VERSION=1.3-STAGING-latest
+GRAPHADMIN_DOCKER_IMAGE_VERSION=1.3-STAGING-latest
 SEARCH_DATA_SERVICE_DOCKER_IMAGE_VERSION=1.2.1
 DATA_ROUTER_DOCKER_IMAGE_VERSION=1.2.2
 MODEL_LOADER_DOCKER_IMAGE_VERSION=1.2.1
@@ -142,6 +150,42 @@ function check_if_user_exists(){
         }
 }
 
+# Instead of duplicating the changes from aai-common
+# Clone the repo and extract the oxm and dbedgerules
+function retrieve_schema_edgerules(){
+
+    local current_branch=$(git rev-parse --abbrev-ref HEAD);
+    local current_dir=$(pwd);
+
+    local microservice_name=aai-common;
+    temp_dir=/tmp/${microservice_name}-$(uuidgen);
+    mkdir -p ${temp_dir} && cd ${temp_dir};
+    rm -r ${current_dir}/aai-schema
+
+    git init
+    git remote add origin https://gerrit.onap.org/r/aai/aai-common
+    git config core.sparsecheckout true
+
+    # Specifies which folders to checkout from the repo
+    # Limited to only the aai-resources as we don't need other folders from
+    # microservice deployment for this repository
+
+    echo "aai-schema/src/main/resources/**" >> .git/info/sparse-checkout
+
+    git fetch --depth=1 origin ${current_branch}
+    git checkout ${current_branch}
+
+    mkdir -p ${current_dir}/aai-schema
+    cp -R ${temp_dir}/aai-schema/src/main/resources/onap/ ${current_dir}/aai-schema
+
+    rm -rf ${temp_dir}
+}
+
+retrieve_schema_edgerules;
+
+docker pull ${DOCKER_REGISTRY}/onap/aai-graphadmin:${GRAPHADMIN_DOCKER_IMAGE_VERSION};
+docker tag $DOCKER_REGISTRY/onap/aai-graphadmin:${GRAPHADMIN_DOCKER_IMAGE_VERSION} $DOCKER_REGISTRY/onap/aai-graphadmin:latest;
+
 docker pull ${DOCKER_REGISTRY}/onap/aai-resources:${RESOURCES_DOCKER_IMAGE_VERSION};
 docker tag $DOCKER_REGISTRY/onap/aai-resources:$RESOURCES_DOCKER_IMAGE_VERSION $DOCKER_REGISTRY/onap/aai-resources:latest;
 
@@ -190,12 +234,15 @@ fi;
 chown -R $USER_ID:$USER_ID $RESOURCE_LOGS $TRAVERSAL_LOGS;
 chown -R 341790:492381 $BABEL_LOGS;
 
-$DOCKER_COMPOSE_CMD run --rm aai-resources.api.simpledemo.onap.org createDBSchema.sh
+$DOCKER_COMPOSE_CMD run --rm aai-graphadmin.api.simpledemo.onap.org createDBSchema.sh
 
-RESOURCES_CONTAINER_NAME=$($DOCKER_COMPOSE_CMD up -d aai-resources.api.simpledemo.onap.org 2>&1 | grep 'Creating' | grep -v 'volume' | grep -v 'network' | awk '{ print $2; }' | head -1);
-wait_for_container $RESOURCES_CONTAINER_NAME 'Resources Microservice Started';
+GRAPHADMIN_CONTAINER_NAME=$($DOCKER_COMPOSE_CMD up -d aai-graphadmin.api.simpledemo.onap.org 2>&1 | grep 'Creating' | grep -v 'volume' | grep -v 'network' | awk '{ print $2; }' | head -1);
+wait_for_container $GRAPHADMIN_CONTAINER_NAME 'GraphAdmin Microservice Started';
 
 # Deploy haproxy and traversal at the same time for traversal to make updateQuery against resources using haproxy
+
+$DOCKER_COMPOSE_CMD up -d aai-resources.api.simpledemo.onap.org 
+
 $DOCKER_COMPOSE_CMD up -d aai-traversal.api.simpledemo.onap.org aai.api.simpledemo.onap.org
 
 sleep 3;
