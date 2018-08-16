@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a76adc5_9e19c18a",
+        "filename": "sparky/appconfig/application.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1157
+      },
+      "writtenOn": "2018-08-16T15:27:05Z",
+      "side": 1,
+      "message": "instead of oxm-override, you can specify oxm-default which will use the latest OXM version available from the OXM directory.  You don\u0027t need a properties file for oxm-default.\n\nYou can also keep the oxm-override properties file in the chart, as it becomes something that could be used quickly to override the API version if needed, simply by changing the oxm-default -\u003e oxm-override profile.",
+      "range": {
+        "startLine": 11,
+        "startChar": 58,
+        "endLine": 11,
+        "endChar": 70
+      },
+      "revId": "1515335de643b0f7c24a28735dd5a7b024fc935d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
