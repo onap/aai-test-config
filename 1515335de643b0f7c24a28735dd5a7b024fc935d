@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "1a76adc5_5e132966",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1157
+      },
+      "writtenOn": "2018-08-16T15:28:11Z",
+      "side": 1,
+      "message": "As part of making the test-config changes you also need to change how the config map works the wind river vm deploy.yaml files as well right?",
+      "revId": "1515335de643b0f7c24a28735dd5a7b024fc935d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_9e19c18a",
         "filename": "sparky/appconfig/application.properties",
         "patchSetId": 1
