@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a76adc5_e77cd822",
+        "filename": "validation/appconfig/validation-service-auth.properties",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 703
+      },
+      "writtenOn": "2018-08-21T16:23:37Z",
+      "side": 1,
+      "message": "This should be what the ${CONFIG_HOME} env variable is set to. (This can be found in the deploy.yaml, and is usually \"appconfig\")\n\nIdeally the path in this file should be relative to the ${CONFIG_HOME} directory, i.e. /auth/auth_policy.json\n\nThis way we won\u0027t need to update this file every time ${CONFIG_HOME} changes.\n\nThis may mean a small code change to add ${CONFIG_HOME} to the start of this variable in the code/spring xml.",
+      "range": {
+        "startLine": 17,
+        "startChar": 17,
+        "endLine": 17,
+        "endChar": 32
+      },
+      "revId": "7af4ef22311e754d44aa1196653a8d493e39daee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
