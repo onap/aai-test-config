@@ -22,6 +22,30 @@
       "revId": "7af4ef22311e754d44aa1196653a8d493e39daee",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_e7b0588d",
+        "filename": "validation/appconfig/validation-service-auth.properties",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 2965
+      },
+      "writtenOn": "2018-08-21T17:48:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_e77cd822",
+      "range": {
+        "startLine": 17,
+        "startChar": 17,
+        "endLine": 17,
+        "endChar": 32
+      },
+      "revId": "7af4ef22311e754d44aa1196653a8d493e39daee",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
