@@ -149,7 +149,7 @@ services:
     hostname: sparky-be
     volumes:
       - ${UI_LOGS}:/logs
-      - /opt/test-config/sparky/appconfig:/opt/app/sparky/appconfig
+      - /opt/test-config/sparky/appconfig:/opt/app/sparky/config
     ports:
       - 9517:9517
     environment:
