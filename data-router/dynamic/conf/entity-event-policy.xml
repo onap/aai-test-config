@@ -21,13 +21,4 @@
   <bean id="entityEventPolicy" class="org.onap.aai.datarouter.policy.EntityEventPolicy" init-method="startup" >
     <constructor-arg ref="eepConfig"/>
   </bean>
-  
-  <bean id="consumerBean" class="org.onap.aai.event.client.DMaaPEventConsumer" >
-    <constructor-arg name="host" value="mr.api.simpledemo.openecomp.org:3904" />
-    <constructor-arg name="topic" value="AAI-EVENT" />
-    <constructor-arg name="username" value="test" />
-    <constructor-arg name="password" value="test" />
-    <constructor-arg name="consumerGroup" value="datarouter" />
-    <constructor-arg name="consumerId" value="datarouter" />
-  </bean>
 </beans>

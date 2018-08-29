@@ -51,7 +51,7 @@
 
     <!-- Janus Implementation -->
     <bean id="graphBuilder" class="org.onap.aai.champjanus.graph.impl.JanusChampGraphImpl$Builder">
-        <constructor-arg value="<%= @CHAMP_GRAPH_NAME %>"/>
+        <constructor-arg value="aaigraph"/>
         <constructor-arg ref="props"/>
     </bean>
     <bean id="graphImpl" class="org.onap.aai.champjanus.graph.impl.JanusChampGraphImpl">

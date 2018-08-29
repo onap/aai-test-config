@@ -168,6 +168,7 @@ services:
     hostname: champ-service
     volumes:
       - ${CHAMP_LOGS}:/logs
+      - /opt/test-config/champ-service/logging/logback.xml:/opt/app/champ-service/bundleconfig/etc/logback.xml
       - /opt/test-config/champ-service/appconfig:/opt/app/champ-service/config
       - /opt/test-config/champ-service/dynamic:/opt/app/champ-service/dynamic
     ports:
