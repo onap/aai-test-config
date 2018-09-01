@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a76adc5_5b60c9ce",
+        "filename": "sparky/appconfig/application-oxm-schema-prod.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1157
+      },
+      "writtenOn": "2018-09-01T16:36:55Z",
+      "side": 1,
+      "message": "If this file is being specified from outside the container, then you\u0027ll need to leave the value as /opt/app/sparky/onap/oxm, but if it\u0027s not specified explicitly then you can leave the default to be used from within the container which has an env var to resolve ${APP_HOME}.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 18
+      },
+      "revId": "5a4cf7086a79790d4a6c5bdd1b9ba50d2dd35825",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_7b5d8514",
+        "filename": "sparky/appconfig/schemaIngest.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1157
+      },
+      "writtenOn": "2018-09-01T16:36:55Z",
+      "side": 1,
+      "message": "The fun part with spring-profile configuration is that it\u0027s not necessary to map this file into the container.  You can leave it like this inside the container, and only specify variables that need to feed it in the application-[oxm-xxx].properties profiles or in the application.properties.",
+      "range": {
+        "startLine": 2,
+        "startChar": 10,
+        "endLine": 17,
+        "endChar": 34
+      },
+      "revId": "5a4cf7086a79790d4a6c5bdd1b9ba50d2dd35825",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
