@@ -19,6 +19,13 @@ services:
       - /opt/test-config/aai-resources/appconfig/aai_keystore:/opt/app/aai-resources/resources/etc/auth/aai_keystore
       - /opt/test-config/aai-resources/appconfig/realm.properties:/opt/app/aai-resources/resources/etc/auth/realm.properties
       - /opt/test-config/aai-schema/:/opt/app/aai-resources/resources/schema/
+      - /opt/test-config/aai-resources/appconfig/aaf/cadi.properties:/opt/app/aai-resources/resources/cadi.properties
+      - /opt/test-config/aai-resources/appconfig/aaf/org.onap.aai.keyfile:/opt/app/aai-resources/resources/aaf/org.onap.aai.keyfile
+      - /opt/test-config/aai-resources/appconfig/aaf/org.onap.aai.p12:/opt/app/aai-resources/resources/aaf/org.onap.aai.p12
+      - /opt/test-config/aai-resources/appconfig/aaf/org.onap.aai.props:/opt/app/aai-resources/resources/aaf/org.onap.aai.props
+      - /opt/test-config/aai-resources/appconfig/aaf/org.osaaf.location.props:/opt/app/aai-resources/resources/aaf/org.osaaf.location.props
+      - /opt/test-config/aai-resources/appconfig/aaf/permissions.properties:/opt/app/aai-resources/resources/aaf/permissions.properties
+      - /opt/test-config/aai-resources/appconfig/aaf/truststoreONAPall.jks:/opt/app/aai-resources/resources/aaf/truststoreONAPall.jks
     logging:
       driver: "json-file"
       options:
@@ -42,6 +49,13 @@ services:
       - /opt/test-config/aai-traversal/appconfig/aai_keystore:/opt/app/aai-traversal/resources/etc/auth/aai_keystore
       - /opt/test-config/aai-traversal/appconfig/realm.properties:/opt/app/aai-traversal/resources/etc/auth/realm.properties
       - /opt/test-config/aai-schema/:/opt/app/aai-resources/resources/schema/
+      - /opt/test-config/aai-traversal/appconfig/aaf/cadi.properties:/opt/app/aai-traversal/resources/cadi.properties
+      - /opt/test-config/aai-traversal/appconfig/aaf/org.onap.aai.keyfile:/opt/app/aai-traversal/resources/aaf/org.onap.aai.keyfile
+      - /opt/test-config/aai-traversal/appconfig/aaf/org.onap.aai.p12:/opt/app/aai-traversal/resources/aaf/org.onap.aai.p12
+      - /opt/test-config/aai-traversal/appconfig/aaf/org.onap.aai.props:/opt/app/aai-traversal/resources/aaf/org.onap.aai.props
+      - /opt/test-config/aai-traversal/appconfig/aaf/org.osaaf.location.props:/opt/app/aai-traversal/resources/aaf/org.osaaf.location.props
+      - /opt/test-config/aai-traversal/appconfig/aaf/permissions.properties:/opt/app/aai-traversal/resources/aaf/permissions.properties
+      - /opt/test-config/aai-traversal/appconfig/aaf/truststoreONAPall.jks:/opt/app/aai-traversal/resources/aaf/truststoreONAPall.jks
     ports:
       - 8446:8446
     logging:
