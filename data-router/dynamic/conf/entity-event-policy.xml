@@ -16,9 +16,26 @@
     <property name="searchCertName" value="client-cert-onap.p12" />
     <property name="searchKeystorePwd" value="OBF:1y0q1uvc1uum1uvg1pil1pjl1uuq1uvk1uuu1y10" />
     <property name="searchKeystore" value="tomcat_keystore" />
+    <property name="schemaVersions" ref="schemaVersions" />
+    <property name="schemaLocationsBean" ref="schemaLocationsBean" />
+  </bean>
+
+  <bean id="consumerBeanEntityEvent" class="org.onap.aai.event.client.DMaaPEventConsumer" >
+    <constructor-arg name="host" value="mr.api.simpledemo.openecomp.org:3905" />
+    <constructor-arg name="topic" value="AAI-EVENT" />
+    <constructor-arg name="username" value="" />
+    <constructor-arg name="password" value="" />
+    <constructor-arg name="consumerGroup" value="datarouter" />
+    <constructor-arg name="consumerId" value="datarouter" />
+    <constructor-arg name="timeoutMs" value="1000" />
+    <constructor-arg name="messageLimit" value="100" />
+    <constructor-arg name="transportType" value="HTTPAUTH" />
+    <constructor-arg name="protocol" value="https" /> 
+    <constructor-arg name="filter"><null /></constructor-arg>
   </bean>
 
   <bean id="entityEventPolicy" class="org.onap.aai.datarouter.policy.EntityEventPolicy" init-method="startup" >
     <constructor-arg ref="eepConfig"/>
   </bean>
+
 </beans>
