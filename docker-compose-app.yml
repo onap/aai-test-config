@@ -160,14 +160,15 @@ services:
     hostname: sparky-be
     volumes:
       - ${UI_LOGS}:/logs
-      - /opt/test-config/sparky/appconfig:/opt/app/sparky/config
+      - /opt/test-config/sparky/appconfig/auth:/opt/app/sparky/config/auth
+      - /opt/test-config/sparky/appconfig/portal:/opt/app/sparky/config/portal
+      - /opt/test-config/sparky/appconfig/application.properties:/opt/app/sparky/config/application.properties
+      - /opt/test-config/sparky/appconfig/application-oxm-default.properties:/opt/app/sparky/config/application-oxm-default.properties
+      - /opt/test-config/sparky/appconfig/application-oxm-schema-prod.properties:/opt/app/sparky/config/application-oxm-schema-prod.properties
+      - /opt/test-config/sparky/appconfig/application-resources.properties:/opt/app/sparky/config/application-resources.properties
+      - /opt/test-config/sparky/appconfig/application-ssl.properties:/opt/app/sparky/config/application-ssl.properties
     ports:
       - 9517:9517
-    environment:
-      - KEYSTORE_PASSWORD=OBF:1y0q1uvc1uum1uvg1pil1pjl1uuq1uvk1uuu1y10
-      - KEYSTORE_ALIAS_PASSWORD=OBF:1y0q1uvc1uum1uvg1pil1pjl1uuq1uvk1uuu1y10
-      - SPARKY_SSL_ENABLED=false
-      - SPARKY_PORTAL_ENABLED=true
     logging:
       driver: "json-file"
       options:
