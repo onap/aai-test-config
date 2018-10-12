@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bada0100_9e2c57ad",
+        "filename": "sparky/appconfig/application-sync.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1157
+      },
+      "writtenOn": "2018-10-12T17:09:22Z",
+      "side": 0,
+      "message": "Technically this file doesn\u0027t need to be provided, as it\u0027s already in the docker container.  It doesn\u0027t hurt anything by leaving it here, and it gives you control over which synchronizers run in the resources.\n\nWhen we configure gizmo vs resources, it\u0027s generally easy to omit the sync by not include the sync spring-profile when configuring for gizmo, instead of setting all these properties to false.\n\nThere is no harm in leaving it here, but just so you know, it\u0027s not really needed as we generally enable / disable sync as a whole.",
+      "range": {
+        "startLine": 1,
+        "startChar": 9,
+        "endLine": 6,
+        "endChar": 27
+      },
+      "revId": "ea2fdc87f565b7a31e171eb7c46d2b692c1ebb54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bada0100_3e19ab88",
+        "filename": "sparky/appconfig/filters/aaiui_filters.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1157
+      },
+      "writtenOn": "2018-10-12T17:09:22Z",
+      "side": 0,
+      "message": "I think in other environments we have mapped in the aaiui_filters.json as sometimes the indexName needs to be specified by chef parameters.  However in this situation, it\u0027s probably fine to delete as the one from within the container will be used.",
+      "range": {
+        "startLine": 4,
+        "startChar": 2,
+        "endLine": 14,
+        "endChar": 19
+      },
+      "revId": "ea2fdc87f565b7a31e171eb7c46d2b692c1ebb54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
