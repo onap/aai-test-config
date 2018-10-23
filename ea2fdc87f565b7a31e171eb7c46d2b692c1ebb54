@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bada0100_79e9707f",
+        "filename": "sparky/appconfig/application-sync.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 651
+      },
+      "writtenOn": "2018-10-23T12:46:34Z",
+      "side": 0,
+      "message": "Ok, but I won\u0027t touch it now.\nIt is in sync with what we have on OOM.",
+      "parentUuid": "bada0100_9e2c57ad",
+      "range": {
+        "startLine": 1,
+        "startChar": 9,
+        "endLine": 6,
+        "endChar": 27
+      },
+      "revId": "ea2fdc87f565b7a31e171eb7c46d2b692c1ebb54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bada0100_3e19ab88",
         "filename": "sparky/appconfig/filters/aaiui_filters.json",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2018-10-12T17:09:22Z",
       "side": 0,
       "message": "I think in other environments we have mapped in the aaiui_filters.json as sometimes the indexName needs to be specified by chef parameters.  However in this situation, it\u0027s probably fine to delete as the one from within the container will be used.",
+      "range": {
+        "startLine": 4,
+        "startChar": 2,
+        "endLine": 14,
+        "endChar": 19
+      },
+      "revId": "ea2fdc87f565b7a31e171eb7c46d2b692c1ebb54",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bada0100_d9f2dc6e",
+        "filename": "sparky/appconfig/filters/aaiui_filters.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 651
+      },
+      "writtenOn": "2018-10-23T12:46:34Z",
+      "side": 0,
+      "message": "I followed what is in OOM.\nIn both cases, we want to use the one in the container",
+      "parentUuid": "bada0100_3e19ab88",
       "range": {
         "startLine": 4,
         "startChar": 2,
