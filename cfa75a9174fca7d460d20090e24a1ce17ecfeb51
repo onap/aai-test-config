@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "bada0100_2e45d916",
+        "filename": "sparky/appconfig/descriptors/aaiEntityNodeDescriptors.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1061
+      },
+      "writtenOn": "2018-10-24T13:41:27Z",
+      "side": 1,
+      "message": "Was this file moved to a new location (the config directory?)?",
+      "revId": "cfa75a9174fca7d460d20090e24a1ce17ecfeb51",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bada0100_ae5d4917",
         "filename": "sparky/appconfig/roles.config",
         "patchSetId": 2
