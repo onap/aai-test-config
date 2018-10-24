@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "bada0100_ae50e9d4",
+        "filename": "sparky/appconfig/descriptors/aaiEntityNodeDescriptors.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1157
+      },
+      "writtenOn": "2018-10-24T13:44:59Z",
+      "side": 1,
+      "message": "The file is inside the docker container, so we don\u0027t need to map it in unless we want to customize it.",
+      "parentUuid": "bada0100_2e45d916",
+      "revId": "cfa75a9174fca7d460d20090e24a1ce17ecfeb51",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bada0100_ae5d4917",
         "filename": "sparky/appconfig/roles.config",
         "patchSetId": 2
