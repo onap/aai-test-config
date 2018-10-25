@@ -1,7 +1,0 @@
-<rests xmlns="http://camel.apache.org/schema/spring">
-   <rest>
-      <post uri="/search/querysearch">
-         <to uri="bean:unifiedSearchProcessor?method=search"/>
-      </post>
-   </rest>
-</rests>
