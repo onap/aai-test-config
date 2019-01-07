@@ -1,0 +1,22 @@
+{
+  "query-parameters": {
+    "named-query": {
+      "named-query-uuid": "0367193e-c785-4d5f-9cb8-7bc89dc9ddb7"
+    }
+  },
+  "instance-filters": {
+    "instance-filter": [
+      {
+        "service-instance": {
+          "service-instance-id": "37b8cdb7-94eb-468f-a0c2-4e3c3546578e"
+        },
+        "service-subscription": {
+          "service-type": "vDNS"
+        },
+        "customer": {
+          "global-customer-id": "aai_demo_for_onap_community"
+        }
+      }
+    ]
+  }
+}
