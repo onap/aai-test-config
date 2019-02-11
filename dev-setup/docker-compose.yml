@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  aai-resources:
+    image: onap/aai-resources:1.3.4
+
+  aai-traversal:
+    image: onap/aai-traversal:1.3.4
+
+  aai-haproxy:
+    image: aaionap/haproxy:1.2.4
+    links:
+      - aai-resources:aai-resources.api.simpledemo.onap.org
+      - aai-traversal:aai-traversal.api.simpledemo.onap.org
+    ports:
+      - "8443:8443"
