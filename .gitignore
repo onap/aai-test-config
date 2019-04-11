@@ -1,1 +1,5 @@
 aai-schema/**
+testsuite/robot/library/**
+.project
+*/.pydevproject
+
