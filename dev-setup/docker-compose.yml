@@ -2,10 +2,16 @@ version: '3'
 
 services:
   aai-resources:
-    image: onap/aai-resources:1.3.4
+    image: onap/aai-resources:1.4.0
+    volumes:
+      - ./janusgraph.properties:/opt/app/aai-resources/resources/etc/appprops/janusgraph-cached.properties
+      - ./janusgraph.properties:/opt/app/aai-resources/resources/etc/appprops/janusgraph-realtime.properties
 
   aai-traversal:
-    image: onap/aai-traversal:1.3.4
+    image: onap/aai-traversal:1.4.0
+    volumes:
+      - ./janusgraph.properties:/opt/app/aai-traversal/resources/etc/appprops/janusgraph-cached.properties
+      - ./janusgraph.properties:/opt/app/aai-traversal/resources/etc/appprops/janusgraph-realtime.properties
 
   aai-haproxy:
     image: aaionap/haproxy:1.2.4
@@ -13,4 +19,9 @@ services:
       - aai-resources:aai-resources.api.simpledemo.onap.org
       - aai-traversal:aai-traversal.api.simpledemo.onap.org
     ports:
-      - "8443:8443"
+      - 8443:8443
+
+  aai-backend:
+    image: cassandra:3.11
+    environment:
+      - CASSANDRA_START_RPC=true
