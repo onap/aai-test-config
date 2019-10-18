@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "376903ed_11b1e137",
+        "filename": "testsuite/robot/resources/global_properties.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 37
+      },
+      "writtenOn": "2019-10-18T14:00:23Z",
+      "side": 1,
+      "message": "if these are not supposed to be different, use the existing global properties. If they are supposed to be different per use case, we should enhance robot to have them be specified in the testsuite section.",
+      "revId": "1fee85218b6ab0546c791ad8da05a52bc6685208",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "03c6756e_b4d5ada1",
         "filename": "testsuite/robot/resources/global_properties.robot",
         "patchSetId": 2
@@ -46,6 +63,57 @@
       "revId": "1fee85218b6ab0546c791ad8da05a52bc6685208",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc790691_37a747c9",
+        "filename": "testsuite/robot/resources/global_properties.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 37
+      },
+      "writtenOn": "2019-10-18T14:00:23Z",
+      "side": 1,
+      "message": "why does the cloud owner have to be different for CNF?",
+      "revId": "1fee85218b6ab0546c791ad8da05a52bc6685208",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d36c3893_24869709",
+        "filename": "testsuite/robot/resources/global_properties.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 37
+      },
+      "writtenOn": "2019-10-18T14:00:23Z",
+      "side": 1,
+      "message": "why does the complex have to be different for CNF?",
+      "revId": "1fee85218b6ab0546c791ad8da05a52bc6685208",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f4b38861_3102fc54",
+        "filename": "testsuite/robot/resources/global_properties.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 37
+      },
+      "writtenOn": "2019-10-18T14:00:23Z",
+      "side": 1,
+      "message": "why does physical location have to be different for CNF?",
+      "revId": "1fee85218b6ab0546c791ad8da05a52bc6685208",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
