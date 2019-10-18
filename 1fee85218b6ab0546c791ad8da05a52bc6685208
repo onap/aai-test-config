@@ -83,6 +83,24 @@
     },
     {
       "key": {
+        "uuid": "feae4e4a_10632cd3",
+        "filename": "testsuite/robot/resources/global_properties.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 3957
+      },
+      "writtenOn": "2019-10-18T16:04:15Z",
+      "side": 1,
+      "message": "good question",
+      "parentUuid": "fc790691_37a747c9",
+      "revId": "1fee85218b6ab0546c791ad8da05a52bc6685208",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d36c3893_24869709",
         "filename": "testsuite/robot/resources/global_properties.robot",
         "patchSetId": 2
@@ -100,6 +118,24 @@
     },
     {
       "key": {
+        "uuid": "4c710412_14f440fa",
+        "filename": "testsuite/robot/resources/global_properties.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 3957
+      },
+      "writtenOn": "2019-10-18T16:04:15Z",
+      "side": 1,
+      "message": "good question",
+      "parentUuid": "d36c3893_24869709",
+      "revId": "1fee85218b6ab0546c791ad8da05a52bc6685208",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f4b38861_3102fc54",
         "filename": "testsuite/robot/resources/global_properties.robot",
         "patchSetId": 2
@@ -111,6 +147,24 @@
       "writtenOn": "2019-10-18T14:00:23Z",
       "side": 1,
       "message": "why does physical location have to be different for CNF?",
+      "revId": "1fee85218b6ab0546c791ad8da05a52bc6685208",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4b1a6c83_0c036cbb",
+        "filename": "testsuite/robot/resources/global_properties.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 3957
+      },
+      "writtenOn": "2019-10-18T16:04:15Z",
+      "side": 1,
+      "message": "good question",
+      "parentUuid": "f4b38861_3102fc54",
       "revId": "1fee85218b6ab0546c791ad8da05a52bc6685208",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
