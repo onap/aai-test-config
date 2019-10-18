@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "03c6756e_b4d5ada1",
+        "filename": "testsuite/robot/resources/global_properties.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 3957
+      },
+      "writtenOn": "2019-10-18T10:58:45Z",
+      "side": 1,
+      "message": "WHY we have same configs in two git repos???\nhttps://gerrit.onap.org/r/c/testsuite/+/96861/2/robot/resources/global_properties.robot",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 17
+      },
+      "revId": "1fee85218b6ab0546c791ad8da05a52bc6685208",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": true
+    }
+  ]
+}
