@@ -1,0 +1,3 @@
+{"start":"/nodes/vlan-tags?vlan-id-outer=188",
+  "query":"query/vrfs-fromVlantag?pnfName=onap-pnf-name"
+}

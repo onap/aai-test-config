@@ -1,0 +1,1 @@
+{"dsl" : "pnf('pnf-name','onap-pnf-name')>chassis*>[rack*,rack-unit*]"}
