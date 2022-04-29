@@ -1,0 +1,1 @@
+{"dsl":"generic-vnf('vnf-id','onap-genericvnfId')>service-instance>owning-entity{'owning-entity-name'}"}

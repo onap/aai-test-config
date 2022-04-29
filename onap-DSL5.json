@@ -1,0 +1,1 @@
+{"dsl" : "cloud-region('cloud-region-id','onap-CRId')('cloud-owner','onap-CROwner')>l3-network*('network-name','onap-l3network-name')"}

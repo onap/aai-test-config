@@ -1,0 +1,1 @@
+mvn -o gatling:execute -Dgatling.simulationClass=ONAP_2204_SingleAPI

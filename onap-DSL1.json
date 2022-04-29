@@ -1,0 +1,1 @@
+{"dsl" : "generic-vnf('vnf-id','onap-genericvnfId')>l3-network*('network-id','onap-l3-networkid')"}

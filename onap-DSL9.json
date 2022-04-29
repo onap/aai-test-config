@@ -1,0 +1,1 @@
+{"dsl" : "pnf('pnf-name','onap-pnf-name')>[complex*>zone*,cloud-region*]"}

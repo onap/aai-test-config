@@ -1,0 +1,1 @@
+{"dsl" : "pserver('hostname','onap-hostname1') > p-interface > sriov-pf*('pf-pci-id','onap-sriovpf-PciId')"}
