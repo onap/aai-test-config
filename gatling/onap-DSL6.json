@@ -1,0 +1,1 @@
+{"dsl" : "pnf('pnf-name','onap-pnf-name') > lag-interface*('interface-name','onap-laginterface-name') LIMIT 11"}

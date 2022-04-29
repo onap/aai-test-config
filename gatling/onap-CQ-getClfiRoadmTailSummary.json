@@ -1,0 +1,3 @@
+{"start":"/network/logical-links?link-type=onap-linktype&operational-status=onap-operational-status",
+  "query":"query/getClfiRoadmTailSummary"
+}

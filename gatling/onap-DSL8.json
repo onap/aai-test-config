@@ -1,0 +1,1 @@
+{"dsl":"zone*('zone-id','onap-zoneid')>cloud-region*('cloud-region-id','onap-CRId')>pnf*('nf-role','onap-pnf-nfrole')>[l-interface*>[l3-interface-ipv4-address-list*>[subnet*],l3-interface-ipv6-address-list*>[subnet*]]]"}

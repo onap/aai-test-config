@@ -1,0 +1,1 @@
+{"dsl" : "complex*('physical-location-id','onap-complex-id')>pnf*('nf-function','onap-nf-function')>[l-interface*('interface-name','onap-linterfaceName')>[l3-interface-ipv4-address-list*>[subnet*],l3-interface-ipv6-address-list*>[subnet*]]]"}

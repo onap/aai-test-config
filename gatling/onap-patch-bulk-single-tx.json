@@ -1,0 +1,52 @@
+{
+    "operations": [{
+            "action": "patch",
+            "uri": "/cloud-infrastructure/cloud-regions/cloud-region/onap-CROwner/onap-CRId",
+            "body": {
+                "data-owner": "{{$CR1}}"
+            }
+        }, {
+            "action": "patch",
+            "uri": "/cloud-infrastructure/cloud-regions/cloud-region/onap-CROwner/onap-CRId/availability-zones/availability-zone/onap-availability-zone-name",
+            "body": {
+                "data-owner": "{{$AZ1}}"
+            }
+        }, {
+            "action": "patch",
+            "uri": "/cloud-infrastructure/cloud-regions/cloud-region/onap-CROwner/onap-CRId/flavors/flavor/onap-flavor-id",
+            "body": {
+                "data-owner": "{{$flavor1}}"
+            }
+        }, {
+            "action": "patch",
+            "uri": "/cloud-infrastructure/cloud-regions/cloud-region/onap-CROwner/onap-CRId/images/image/onap-image-id",
+            "body": {
+                "data-owner": "{{$image1}}"
+            }
+        }, {
+            "action": "patch",
+            "uri": "/cloud-infrastructure/complexes/complex/onap-complex-id",
+            "body": {
+                "data-owner": "{{$complex1}}"
+            }
+        }, {
+            "action": "patch",
+            "uri": "/cloud-infrastructure/pservers/pserver/onap-hostname1",
+            "body": {
+                "data-owner": "{{$pserver1}}"
+            }
+        }, {
+            "action": "patch",
+            "uri": "/cloud-infrastructure/pservers/pserver/onap-hostname2",
+            "body": {
+                "data-owner": "{{$pserver2}}"
+            }
+        }, {
+            "action": "patch",
+            "uri": "/cloud-infrastructure/pservers/pserver/onap-hostname3",
+            "body": {
+                "data-owner": "{{$pserver3}}"
+            }
+        }
+    ]
+}
