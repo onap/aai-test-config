@@ -106,7 +106,7 @@ gatling {
         }
 
         #proxy {
-            #host = "http://sub.proxy.att.com"                # proxy host (blank means no proxy)
+            #host = ""                # proxy host (blank means no proxy)
             #port = 8080                                      # HTTP port
             #securedPort = -1                                 # HTTPS port (-1 means no HTTPS proxy)
             #username = ""                                   # proxy username (blank means no credentials)

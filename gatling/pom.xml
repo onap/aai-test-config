@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <groupId>org.springframework.boot</groupId>
+        <version>1.5.3.RELEASE</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.mycompany.myapp</groupId>
+    <artifactId>gatling</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+    <name>Myapp</name>
+
+    <properties>
+        <argLine>-Djava.security.egd=file:/dev/./urandom -Xmx256m</argLine>
+        <gatling.version>2.3.0</gatling.version>
+        <gatling-maven-plugin.version>2.2.4</gatling-maven-plugin.version>
+    </properties>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>io.gatling.highcharts</groupId>
+            <artifactId>gatling-charts-highcharts</artifactId>
+            <version>${gatling.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <defaultGoal>gatling:execute</defaultGoal>
+        <plugins>
+            <plugin>
+                <groupId>io.gatling</groupId>
+                <artifactId>gatling-maven-plugin</artifactId>
+                <version>${gatling-maven-plugin.version}</version>
+                <configuration>
+                    <configFolder>src/test/gatling/conf</configFolder>
+                    <dataFolder>src/test/gatling/data</dataFolder>
+                    <resultsFolder>target/gatling/results</resultsFolder>
+                    <bodiesFolder>src/test/gatling/bodies</bodiesFolder>
+                    <simulationsFolder>src/test/gatling/simulations</simulationsFolder>
+                    <!--
+                    This will run multiple simulations one by one. Useful when doing Gatling
+                    tests in CI.
+                    -->
+                    <runMultipleSimulations>true</runMultipleSimulations>
+                    <!--
+                    To run only one simulation, you need to disable the "runMultipleSimulations"
+                    above, and write the name of your simulation below.
+                    -->
+                    <!--<simulationClass>WriteTheNameOfYourGatlingSimulation</simulationClass>-->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
